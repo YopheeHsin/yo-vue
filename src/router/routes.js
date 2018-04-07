@@ -1,5 +1,6 @@
 import App from '../App'
 import Loading from '../pages/loading'
+import Icon from '../pages/icon'
 
 export default [{
 	path: '/',
@@ -7,4 +8,7 @@ export default [{
 },{
 	path: '/loading',
 	component: Loading
+},{
+	path: '/icon',
+	component: Icon
 }]

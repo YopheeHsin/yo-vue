@@ -1,6 +1,7 @@
 import App from '../App'
 import Loading from '../pages/loading'
 import Icon from '../pages/icon'
+import Stepper from '../pages/stepper'
 
 export default [{
 	path: '/',
@@ -11,4 +12,7 @@ export default [{
 },{
 	path: '/icon',
 	component: Icon
+},{
+	path: '/stepper',
+	component: Stepper
 }]

@@ -2,11 +2,40 @@
 
 > learn vue
 
+
+修改 .eslintrc.js
+```
+extends: [
+	'eslint:recommended'
+],
+rules: {
+	indent: ['error', 'tab', { SwitchCase: 1 }],
+	'linebreak-style': ['error', 'unix'],
+	quotes: ['error', 'single'],
+	semi: ['error', 'never']
+}
+```
+
+安装
+```
+yarn add less --dev
+yarn add less-loader --dev
+```
+
+修改 webpack.base.conf.js
+```
+resolve: {
+    extensions: ['.js', '.vue', '.json', '.less']
+}
+```
+
+
+
 ## Build Setup
 
 ``` bash
 # install dependencies
-npm install
+yarn (即npm install)
 
 # serve with hot reload at localhost:8080
 npm run dev

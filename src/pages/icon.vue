@@ -455,7 +455,7 @@
 </template>
 
 <script>
-import yoIcon from '../components/yo-icon.vue'
+import yoIcon from '../components/yo-icon'
 
 export default {
 	components: {

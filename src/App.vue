@@ -1,13 +1,18 @@
 <template>
 <div>
-	<router-link to="/loading">loading</router-link>
-	<router-link to="/icon">icon</router-link>
-	<router-link to="/stepper">stepper</router-link>
+	<yoCell title="loading" isLink to="/loading" />
+	<yoCell title="icon" isLink to="/icon" />
+	<yoCell title="stepper" isLink to="/stepper" />
 </div>
 </template>
 
 <script>
+import yoCell from './components/yo-cell'
 export default {
-	name: 'App'
+	name: 'App',
+
+	components: {
+		yoCell
+	}
 }
 </script>

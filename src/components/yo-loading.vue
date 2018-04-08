@@ -40,7 +40,7 @@ export default {
 </script>
 
 <style lang="less">
-@import '../css/common/var.less';
+@import '../css/common/var';
 
 .yo-loading {
 	position: relative;

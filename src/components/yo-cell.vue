@@ -5,7 +5,7 @@
 	'yo-cell--required': required,
 	'yo-cell--clickable': isLink || clickable
 }" @click="onClick">
-	<div class="yo-cell_title" v-if="title || icon || $slots.title || $slots.icon">
+	<div class="yo-cell__title" v-if="title || icon || $slots.title || $slots.icon">
 		<slot name="icon">
 			<yo-icon v-if="icon" :name="icon" />
 		</slot>
@@ -14,7 +14,7 @@
 			<div class="yo-cell__label" v-if="label" v-text="label" />
 		</slot>
 	</div>
-	<div class="yo-cell_value" v-if="value || $slots.default" :class="{
+	<div class="yo-cell__value" v-if="value || $slots.default" :class="{
 		'yo-cell__value--link': islink,
 		'yo-cell__value--alone': !$slots.title && !title && !label
 	}">
@@ -55,6 +55,16 @@ export default {
 			type: Boolean,
 			default: true
 		}
+	},
+
+	mounted() {
+/*eslint-disable*/
+console.log(this.isLink)
+	},
+
+	created() {
+/*eslint-disable*/
+console.log(this.isLink)
 	},
 
 	methods: {

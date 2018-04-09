@@ -1,15 +1,15 @@
 <template>
-	<div class="yo-collapse-item" :class="{
-		'yo-hairline--top': index,
-		'yo-collapse-item--expanded': expanded
-	}">
-		<cell class="yo-collapse-item__title" is-link @click="onClick">
-			<slot name="title">{{ title }}</slot>
-		</cell>
-		<div class="yo-collapse-item__content" v-show="expanded">
-			<slot />
-		</div>
+<div class="yo-collapse-item" :class="{
+	'yo-hairline--top': index,
+	'yo-collapse-item--expanded': expanded
+}">
+	<yo-cell class="yo-collapse-item__title" is-link @click="onClick">
+		<slot name="title">{{ title }}</slot>
+	</yo-cell>
+	<div class="yo-collapse-item__content" v-show="expanded">
+		<slot />
 	</div>
+</div>
 </template>
 
 <script>
@@ -74,7 +74,7 @@ export default {
 </script>
 
 <style lang="less">
-@import '../css/common/var'
+@import '../css/common/var';
 
 .yo-collapse-item {
 	&__title {

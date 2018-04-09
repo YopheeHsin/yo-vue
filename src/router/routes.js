@@ -2,6 +2,7 @@ import App from '../App'
 import Loading from '../pages/loading'
 import Icon from '../pages/icon'
 import Stepper from '../pages/stepper'
+import Collapse from '../pages/collapse'
 
 export default [{
 	path: '/',
@@ -15,4 +16,7 @@ export default [{
 },{
 	path: '/stepper',
 	component: Stepper
+},{
+	path: '/collapse',
+	component: Collapse
 }]

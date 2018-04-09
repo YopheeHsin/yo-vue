@@ -1,8 +1,9 @@
 <template>
 <div>
-	<yoCell title="loading" isLink to="/loading" />
-	<yoCell title="icon" isLink to="/icon" />
-	<yoCell title="stepper" isLink to="/stepper" />
+	<yo-cell title="loading" is-link to="/loading" />
+	<yo-cell title="icon" is-link to="/icon" />
+	<yo-cell title="stepper" is-link to="/stepper" />
+	<yo-cell title="collapse" is-link to="/collapse" />
 </div>
 </template>
 

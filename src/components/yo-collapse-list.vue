@@ -1,12 +1,12 @@
 <template>
-	<div class="yo-collapse yo-hairline--top-bottom">
-		<slot/>
-	</div>
+<div class="yo-collapse yo-hairline--top-bottom">
+	<slot/>
+</div>
 </template>
 
 <script>
 export default {
-	name: 'yo-collapse',
+	name: 'yo-collapse-list',
 
 	data() {
 		return {

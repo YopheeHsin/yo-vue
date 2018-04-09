@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import yoCell from './yo-cell'
+import YoCell from './yo-cell'
 import findParent from '../mixins/find-parent'
 import { isDef } from '../utils'
 
@@ -21,7 +21,7 @@ export default {
 	name: 'yo-collapse-item',
 
 	components: {
-		yoCell
+		YoCell
 	},
 
 	mixins: [findParent],

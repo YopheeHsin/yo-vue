@@ -1,6 +1,6 @@
 <template>
 <div class="yo-collapse yo-hairline--top-bottom">
-	<slot/>
+	<slot />
 </div>
 </template>
 

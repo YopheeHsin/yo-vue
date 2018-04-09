@@ -4,6 +4,7 @@
 	<yo-cell title="icon" is-link to="/icon" />
 	<yo-cell title="stepper" is-link to="/stepper" />
 	<yo-cell title="collapse" is-link to="/collapse" />
+	<yo-cell title="test" is-link to="/test" />
 </div>
 </template>
 

@@ -1,15 +1,15 @@
 <template>
 <div class="demo-collapse">
-	<yo-cell is-link />
+	<test title="hehe" />
 </div>
 </template>
 
 <script>
-import yoCell from '../components/yo-cell'
+import Test from '../components/test'
 
 export default {
 	components: {
-		yoCell
+		Test
 	}
 }
 </script>

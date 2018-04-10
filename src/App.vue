@@ -1,20 +1,24 @@
 <template>
 <div>
-	<yo-cell title="loading" is-link to="/loading" />
-	<yo-cell title="icon" is-link to="/icon" />
-	<yo-cell title="stepper" is-link to="/stepper" />
-	<yo-cell title="collapse" is-link to="/collapse" />
-	<yo-cell title="test" is-link to="/test" />
+	<yo-cell-group border>
+		<yo-cell title="loading" is-link to="/loading" />
+		<yo-cell title="icon" is-link to="/icon" />
+		<yo-cell title="stepper" is-link to="/stepper" />
+		<yo-cell title="collapse" is-link to="/collapse" />
+	</yo-cell-group>
 </div>
 </template>
 
 <script>
-import yoCell from './components/yo-cell'
+import YoCellGroup from './components/yo-cell-group'
+import YoCell from './components/yo-cell'
+
 export default {
 	name: 'App',
 
 	components: {
-		yoCell
+		YoCellGroup,
+		YoCell
 	}
 }
 </script>

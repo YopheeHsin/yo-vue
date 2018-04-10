@@ -1,11 +1,11 @@
+@import './var';
+
 html {
 	-webkit-tap-highlight-color: transparent;
 }
 
-* {
+body {
 	margin: 0;
-	padding: 0;
-	border: 0;
 }
 
 a {
@@ -19,9 +19,56 @@ a, input, button, textarea {
 }
 
 ol, ul {
+	margin: 0;
+	padding: 0;
 	list-style: none;
 }
 
 input, button, textarea {
 	font: inherit;
+}
+
+
+[class*='yo-hairline'] {
+	position: relative;
+
+	&:after {
+		content: '';
+		position: absolute;
+		box-sizing: border-box;
+		top: 0;
+		left: 0;
+		width: 200%;
+		height: 200%;
+		border: 0 solid @border-color;
+		transform-origin: 0 0;
+		transform: scale(.5);
+		pointer-events: none;
+	}
+}
+
+.yo-hairline {
+	&--top:after {
+		border-top-width: 1px;
+	}
+
+	&--right:after {
+		border-right-width: 1px;
+	}
+
+	&--bottom:after {
+		border-bottom-width: 1px;
+	}
+
+	&--left:after {
+		border-left-width: 1px;
+	}
+
+	&--top-bottom:after {
+		border-width: 1px 0;
+	}
+
+	&--surround:after {
+		border-width: 1px;
+	}
 }

@@ -10,11 +10,11 @@
 </template>
 
 <script>
-import yoStepper from '../components/yo-stepper'
+import YoStepper from '../components/yo-stepper'
 
 export default {
 	components: {
-		yoStepper
+		YoStepper
 	},
 
 	data() {

@@ -455,11 +455,11 @@
 </template>
 
 <script>
-import yoIcon from '../components/yo-icon'
+import YoIcon from '../components/yo-icon'
 
 export default {
 	components: {
-		yoIcon
+		YoIcon
 	}
 }
 </script>

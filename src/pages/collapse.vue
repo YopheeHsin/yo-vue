@@ -16,21 +16,21 @@
 </template>
 
 <script>
-import yoIcon from '../components/yo-icon'
-import yoCollapseList from '../components/yo-collapse-list'
-import yoCollapseItem from '../components/yo-collapse-item'
+import YoIcon from '../components/yo-icon'
+import YoCollapseList from '../components/yo-collapse-list'
+import YoCollapseItem from '../components/yo-collapse-item'
 
 export default {
+	components: {
+		YoIcon,
+		YoCollapseList,
+		YoCollapseItem
+	},
+
 	data() {
 		return {
 			activeNames: '1'
 		}
-	},
-
-	components: {
-		yoIcon,
-		yoCollapseList,
-		yoCollapseItem
 	}
 }
 </script>

@@ -15,7 +15,7 @@
 		</slot>
 	</div>
 	<div class="yo-cell__value" v-if="value || $slots.default" :class="{
-		'yo-cell__value--link': islink,
+		'yo-cell__value--link': isLink,
 		'yo-cell__value--alone': !$slots.title && !title && !label
 	}">
 		<slot>
@@ -30,14 +30,14 @@
 </template>
 
 <script>
-import yoIcon from './yo-icon'
+import YoIcon from './yo-icon'
 import routerLink from '../mixins/router-link'
 
 export default {
 	name: 'yo-cell',
 
 	components: {
-		yoIcon
+		YoIcon
 	},
 
 	mixins: [routerLink],
@@ -55,16 +55,6 @@ export default {
 			type: Boolean,
 			default: true
 		}
-	},
-
-	mounted() {
-/*eslint-disable*/
-console.log(this.isLink)
-	},
-
-	created() {
-/*eslint-disable*/
-console.log(this.isLink)
 	},
 
 	methods: {

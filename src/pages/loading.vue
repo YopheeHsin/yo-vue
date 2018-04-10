@@ -20,11 +20,11 @@
 </template>
 
 <script>
-import yoLoading from '../components/yo-loading'
+import YoLoading from '../components/yo-loading'
 
 export default {
 	components: {
-		yoLoading
+		YoLoading
 	}
 }
 </script>

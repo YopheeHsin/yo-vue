@@ -3,7 +3,6 @@ import Loading from '../pages/loading'
 import Icon from '../pages/icon'
 import Stepper from '../pages/stepper'
 import Collapse from '../pages/collapse'
-import Test from '../pages/test'
 
 export default [{
 	path: '/',
@@ -20,7 +19,4 @@ export default [{
 },{
 	path: '/collapse',
 	component: Collapse
-},{
-	path: '/test',
-	component: Test
 }]

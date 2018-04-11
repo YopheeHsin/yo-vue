@@ -5,6 +5,7 @@
 		<yo-cell title="icon" is-link to="/icon" />
 		<yo-cell title="stepper" is-link to="/stepper" />
 		<yo-cell title="collapse" is-link to="/collapse" />
+		<yo-cell title="pagination" is-link to="/pagination" />
 	</yo-cell-group>
 </div>
 </template>

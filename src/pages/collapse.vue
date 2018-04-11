@@ -1,15 +1,18 @@
 <template>
 <div class="demo-collapse">
 	<yo-collapse-list v-model="activeNames" accordion>
-		<yo-collapse-item title="有赞微商城" name="1">
-			提供多样店铺模板，快速搭建网上商城
+		<yo-collapse-item name="1">
+			<div slot="title">寻隐者不遇 <yo-icon name="map-pin" /></div>
+			<p>松下问童子，言师采药去。<br>
+			只在此山中，云深不知处。</p>
 		</yo-collapse-item>
-		<yo-collapse-item name="2">
-			<div slot="title">有赞零售<yo-icon name="bullseye" /></div>
-			网店吸粉获客、会员分层营销、一机多种收款，告别经营低效和客户流失
+		<yo-collapse-item title="问刘十九" name="2">
+			<p>绿蚁新醅酒，红泥小火炉。<br>
+			晚来天欲雪，能饮一杯无？</p>
 		</yo-collapse-item>
-		<yo-collapse-item title="有赞美业" name="3">
-			线上拓客，随时预约，贴心顺手的开单收银
+		<yo-collapse-item title="近试上张水部" name="3">
+			<p>洞房昨夜停红烛，待晓堂前拜舅姑。<br>
+			妆罢低声问夫婿，画眉深浅入时无。</p>
 		</yo-collapse-item>
 	</yo-collapse-list>
 </div>
@@ -37,17 +40,9 @@ export default {
 
 <style lang="less">
 .demo-collapse {
-	// text-align: center;
-
-	// .yo-loading {
-	// 	display: inline-block;
-	// 	margin: 20px 10px;
-	// 	padding: 10px;
-
-	// 	&--white {
-	// 		background-color: rgba(0, 0, 0, .5);
-	// 		border-radius: 3px;
-	// 	}
-	// }
+	p {
+		margin: 0;
+		font-size: 14px;
+	}
 }
 </style>

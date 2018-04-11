@@ -4,7 +4,7 @@
 		:class="{ 'yo-pagination--disabled': value === 1 }"
 		@click="selectPage(value - 1)"
 	>
-		{{ prevText || $t('prev') }}
+		{{ prevText }}
 	</li>
 	<li v-if="isMultiMode" v-for="(page, index) in pages" :key="index"
 		class="yo-pagination__item yo-pagination__page yo-hairline"
@@ -20,7 +20,7 @@
 		:class="{ 'yo-pagination--disabled': value === computedPageCount }"
 		@click="selectPage(value + 1)"
 	>
-		{{ nextText || $t('next') }}
+		{{ nextText }}
 	</li>
 </ul>
 </template>
@@ -31,8 +31,14 @@ export default {
 
 	props: {
 		value: Number,
-		prevText: String,
-		nextText: String,
+		prevText: {
+			type: String,
+			default: '上一页'
+		},
+		nextText: {
+			type: String,
+			default: '下一页'
+		},
 		pageCount: Number,
 		forceEllipses: Boolean,
 		mode: {
@@ -58,7 +64,7 @@ export default {
 			return this.mode === 'multi'
 		},
 
-		computedPageCount)() {
+		computedPageCount() {
 			const count = this.pageCount || Math.ceil(this.totalItems / this.itemsPerPage)
 			return Math.max(1, count)
 		},
@@ -86,18 +92,18 @@ export default {
 
 			for (let number = startPage; number <= endPage; number++) {
 				const page = this.makePage(number, number, number === this.value)
-				page.push(page)
+				pages.push(page)
 			}
 
 			if (isMaxSized && this.showPageSize > 0 && this.forceEllipses) {
 				if (startPage > 1) {
-					const previousPageSet = this.makePage(startPage - 1, '...', false);
-					pages.unshift(previousPageSet);
+					const previousPageSet = this.makePage(startPage - 1, '...', false)
+					pages.unshift(previousPageSet)
 				}
 
 				if (endPage < pageCount) {
-					const nextPageSet = this.makePage(endPage + 1, '...', false);
-					pages.push(nextPageSet);
+					const nextPageSet = this.makePage(endPage + 1, '...', false)
+					pages.push(nextPageSet)
 				}
 			}
 

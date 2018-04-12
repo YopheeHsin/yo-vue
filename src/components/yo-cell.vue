@@ -81,7 +81,7 @@ export default {
 	font-size: 14px;
 	overflow: hidden;
 
-	&:not(:last-child):after {
+	&:not(:last-child)::after {
 		right: 0;
 		left: 15px;
 		width: auto;
@@ -131,7 +131,7 @@ export default {
 	&--required {
 		overflow: visible;
 
-		&:before {
+		&::before {
 			content: '*';
 			position: absolute;
 			left: 7px;

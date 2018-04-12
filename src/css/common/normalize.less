@@ -32,7 +32,7 @@ input, button, textarea {
 [class*='yo-hairline'] {
 	position: relative;
 
-	&:after {
+	&::after {
 		content: '';
 		position: absolute;
 		box-sizing: border-box;
@@ -48,27 +48,27 @@ input, button, textarea {
 }
 
 .yo-hairline {
-	&--top:after {
+	&--top::after {
 		border-top-width: 1px;
 	}
 
-	&--right:after {
+	&--right::after {
 		border-right-width: 1px;
 	}
 
-	&--bottom:after {
+	&--bottom::after {
 		border-bottom-width: 1px;
 	}
 
-	&--left:after {
+	&--left::after {
 		border-left-width: 1px;
 	}
 
-	&--top-bottom:after {
+	&--top-bottom::after {
 		border-width: 1px 0;
 	}
 
-	&--surround:after {
+	&--surround::after {
 		border-width: 1px;
 	}
 }

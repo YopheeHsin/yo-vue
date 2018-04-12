@@ -147,17 +147,17 @@ export default {
 		padding: 5px;
 		vertical-align: middle;
 
-		&:before {
+		&::before {
 			width: 9px;
 			height: 1px;
 		}
 
-		&:after {
+		&::after {
 			width: 1px;
 			height: 9px;
 		}
 
-		&:before, &:after {
+		&::before, &::after {
 			content: '';
 			position: absolute;
 			top: 0; right: 0; bottom: 0; left: 0;
@@ -179,7 +179,7 @@ export default {
 	&__minus {
 		border-radius: 2px 0 0 2px;
 
-		&:after {
+		&::after {
 			display: none;
 		}
 

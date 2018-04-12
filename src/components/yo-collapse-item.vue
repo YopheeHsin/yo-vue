@@ -78,12 +78,12 @@ export default {
 
 .yo-collapse-item {
 	&__title {
-		.yo-cell__right-icon:before {
+		.yo-cell__right-icon::before {
 			transition: .3s;
 			transform: rotate(90deg);
 		}
 
-		&:after {
+		&::after {
 			visibility: hidden;
 		}
 	}
@@ -95,11 +95,11 @@ export default {
 
 	&--expanded {
 		.yo-collapse-item__title {
-			.yo-cell__right-icon:before {
+			.yo-cell__right-icon::before {
 				transform: rotate(-90deg);
 			}
 
-			&:after {
+			&::after {
 				visibility: visible;
 			}
 

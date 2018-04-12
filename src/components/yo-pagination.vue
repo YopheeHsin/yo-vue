@@ -9,7 +9,7 @@
 	<li v-if="isMultiMode" v-for="(page, index) in pages" :key="index"
 		class="yo-pagination__item yo-pagination__page yo-hairline"
 		:class="{ 'yo-pagination--active': page.active }"
-		@click="selectPage(page.nubmer)"
+		@click="selectPage(page.number)"
 	>
 		{{ page.text }}
 	</li>

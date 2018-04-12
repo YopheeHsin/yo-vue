@@ -3,7 +3,8 @@
 	<yo-cell-group>
 		<yo-cell v-for="(item, index) in items" :key="index">{{ item }}</yo-cell>
 	</yo-cell-group>
-	<yo-pagination v-model="currentPage" :total-items="30" :items-per-page="itemsPerPage" @change="handleChange" />
+	<yo-pagination v-model="currentPage" :showPageSize="3" force-ellipses
+		:total-items="totalItems" :items-per-page="itemsPerPage" />
 </div>
 </template>
 
@@ -22,6 +23,7 @@ export default {
 	data() {
 		return {
 			currentPage: 1,
+			totalItems: 50,
 			itemsPerPage: 5
 		}
 	},
@@ -37,10 +39,6 @@ export default {
 	methods: {
 		rangeArray(start, end) {
 			return Array(end - start + 1).fill(0).map((v, i) => i + start)
-		},
-
-		handleChange(page) {
-			this.currentPage = page
 		}
 	}
 }

@@ -4,6 +4,7 @@ import Icon from '../pages/icon'
 import Stepper from '../pages/stepper'
 import Collapse from '../pages/collapse'
 import Pagination from '../pages/pagination'
+import Test from '../pages/test'
 
 export default [{
 	path: '/',
@@ -23,4 +24,7 @@ export default [{
 },{
 	path: '/pagination',
 	component: Pagination
+},{
+	path: '/test',
+	component: Test
 }]

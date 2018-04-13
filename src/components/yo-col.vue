@@ -36,6 +36,16 @@ export default {
 	box-sizing: border-box;
 }
 
+.generate-col(@n, @i: 1) when (@i =< @n) {
+	.yo-col-@{i} {
+		width: calc(@i * 100% / 24);
+	}
+
+	.yo-col-offset-@{i} {
+		margin-left: calc(@i * 100% / 24);
+	}
+}
+
 // TODO LESS
 // @for $i from 1 to 24 {
 // .yo-col-$i { width: calc($i * 100% / 24); }

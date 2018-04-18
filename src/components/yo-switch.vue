@@ -48,7 +48,7 @@ export default {
 }
 </script>
 
-<style>
+<style lang="less">
 @import '../css/common/var';
 
 .yo-switch {
@@ -76,12 +76,12 @@ export default {
 	&__loading {
 		top: 25%;
 		left: 25%;
-		width: 50%;
-		height: 50%;
+		width: 50%!important;
+		height: 50%!important;
 	}
 
 	&--on {
-		background-color: #44db5e;
+		background-color: @green;
 
 		.yo-switch__node {
 			transform: translateX(.6em);

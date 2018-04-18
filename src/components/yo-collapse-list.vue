@@ -1,5 +1,5 @@
 <template>
-<div class="yo-collapse yo-hairline--top-bottom">
+<div class="yo-collapse-list yo-hairline--top-bottom">
 	<slot />
 </div>
 </template>

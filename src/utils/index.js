@@ -7,7 +7,7 @@ function debounce(func, wait, immediate) {
 	let timeout, context, args, timestamp, result
 
 	const later = () => {
-		const last = new Date().getTime() - timestamp
+		const last = +new Date() - timestamp
 
 		if (last < wait && last >= 0) {
 			timeout = setTimeout(later, wait - last)
@@ -23,7 +23,7 @@ function debounce(func, wait, immediate) {
 	return function() {
 		context = this
 		args = arguments
-		timestamp = new Date().getTime()
+		timestamp = +new Date()
 		const callNow = immediate && !timeout
 		if (!timeout) timeout = setTimeout(later, wait)
 		if (callNow) {
@@ -42,7 +42,7 @@ function throttle(func, wait, options) {
 	if (!options) options = {}
 
 	const later = () => {
-		previous = options.leading === false ? 0 : new Date().getTime()
+		previous = options.leading === false ? 0 : +new Date()
 		timeout = null
 		result = func.apply(context, args)
 		if (!timeout) context = args = null
@@ -51,7 +51,7 @@ function throttle(func, wait, options) {
 	return function() {
 		context = this
 		args = arguments
-		const now = new Date().getTime()
+		const now = +new Date()
 		if (!previous && options.leading === false) previous = now
 		const remaining = wait - (now - previous)
 		if (remaining <= 0 || remaining > wait) {

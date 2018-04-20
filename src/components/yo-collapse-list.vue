@@ -1,5 +1,5 @@
 <template>
-<div class="yo-collapse yo-hairline--top-bottom">
+<div class="yo-collapse-list yo-hairline--top-bottom">
 	<slot />
 </div>
 </template>
@@ -26,7 +26,7 @@ export default {
 	methods: {
 		switch(name, expanded) {
 			const { activeNames } = this
-			if(!this.accordion) {
+			if (!this.accordion) {
 				name = expanded
 					? activeNames.concat(name)
 					: activeNames.filter(activeNames => activeNames !== name)

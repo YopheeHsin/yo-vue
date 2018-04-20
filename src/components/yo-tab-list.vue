@@ -1,14 +1,13 @@
 <template>
-<div class="yo-tab-list" :class="`yo-tab-list--${type}`">
-	<div ref="wrap" class="yo-tab-list__wrap" :class="[
+<div class="yo-tab-list">
+	<div ref="wrap" class="yo-tab-list__wrap yo-hairline--top-bottom" :class="[
 		`yo-tab-list__wrap--${position}`,
 		{
-			'yo-tab-list--scrollable': scrollable,
-			'yo-hairline--top-bottom': type === 'line'
+			'yo-tab-list--scrollable': scrollable
 		}
 	]">
-		<div ref="nav" class="yo-tab-list__nav" :class="`yo-tab-list__nav--${type}`">
-			<div v-if="type === 'line'" class="yo-tab-list__nav-bar" :style="navBarStyle" />
+		<div ref="nav" class="yo-tab-list__nav">
+			<div class="yo-tab-list__nav-bar" :style="navBarStyle" />
 			<div ref="tabs" v-for="(tab, index) in tabs" :key="index"
 				class="yo-tab" :class="{
 					'yo-tab--active': index === curActive,
@@ -53,10 +52,6 @@ export default {
 		active: {
 			type: [Number, String],
 			default: 0
-		},
-		type: {
-			type: String,
-			default: 'line'
 		},
 		duration: {
 			type: Number,
@@ -227,5 +222,38 @@ export default {
 </script>
 
 <style lang="less">
+.yo-tab-list {
+	position: relative;
 
+	&__wrap {
+		position: absolute;
+		top: 0;
+		right: 0;
+		left: 0;
+		overflow: hidden;
+		z-index: 99;
+
+		&--page-top {
+			position: fixed;
+		}
+
+		&--content-bottom {
+			top: auto;
+			bottom: 0;
+		}
+	}
+
+	&__nav {
+		display: flex;
+		position: relative;
+		background-color: @white;
+		user-select: none;
+
+		&--line {
+			box-sizing: content-box;
+			height: 100%;
+			padding-bottom: 15px;
+		}
+	}
+}
 </style>

@@ -75,7 +75,7 @@ function getScrollEventTarget(el, rootParent = window) {
 	let currentNode = el
 	while (currentNode && currentNode.tagName !== 'HTML' && currentNode.tagName !== 'BODY'
 		&& currentNode.nodeType === 1 && currentNode !== rootParent) {
-		const overflowY = this.getComputedStyle(currentNode).overflowY
+		const overflowY = window.getComputedStyle(currentNode, null).overflowY
 		if (overflowY === 'scroll' || overflowY === 'auto') return currentNode
 		currentNode = currentNode.parentNode
 	}

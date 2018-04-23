@@ -287,5 +287,39 @@ export default {
 			}
 		}
 	}
+
+	.yo-tab {
+		position: relative;
+		box-sizing: border-box;
+		flex: 1;
+		line-height: @yo-tab-height;
+		padding: 0 5px;
+		background-color: @white;
+		text-align: center;
+		font-size: 14px;
+		color: @text-color;
+		min-width: 0; /* hack for flex ellipsis */
+		cursor: pointer;
+
+		span {
+			display: block;
+		}
+
+		&:active {
+			background-color: @active-color;
+		}
+
+		&--active {
+			color: @red;
+		}
+
+		&--disabled {
+			color: @gray;
+
+			&:active {
+				background-color: @white;
+			}
+		}
+	}
 }
 </style>

@@ -5,6 +5,7 @@ import Stepper from '../pages/stepper'
 import Collapse from '../pages/collapse'
 import Pagination from '../pages/pagination'
 import Switch from '../pages/switch'
+import Tab from '../pages/tab'
 import Test from '../pages/test'
 
 export default [{
@@ -28,6 +29,9 @@ export default [{
 },{
 	path: '/switch',
 	component: Switch
+},{
+	path: '/tab',
+	component: Tab
 },{
 	path: '/test',
 	component: Test

@@ -7,7 +7,7 @@ try {
 		}
 	})
 	window.addEventListener('test-passive', null, opts)
-} catch (e) {}
+} catch (e) {}	// eslint-disable-line
 
 
 export function on(target, event, handler, passive = false) {

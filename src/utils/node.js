@@ -4,6 +4,6 @@ export default {
 		node: Array
 	},
 	render(h, ctx) {
-		return ctx.props.node;
+		return ctx.props.node
 	}
 }

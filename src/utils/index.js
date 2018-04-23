@@ -114,7 +114,7 @@ function getScrollTop(el) {
 
 
 function setScrollTop(el, val) {
-	isWindow(el) {
+	if (isWindow(el)) {
 		el.scrollTo(
 			getScrollLeft(el),
 			val

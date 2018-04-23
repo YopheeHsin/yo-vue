@@ -29,7 +29,8 @@
 <script>
 import YoNode from '../utils/node'
 import { on, off } from '../utils/event'
-import { raf } form '../utils/raf'
+import { getScrollEventTarget, getScrollTop, setScrollTop, getTop } from '../utils'
+import { raf } from '../utils/raf'
 
 export default {
 	name: 'yo-tab-list',
@@ -85,7 +86,7 @@ export default {
 			this.setNavBar()
 
 			if (this.position === 'page-top' || this.position === 'content-bottom') {
-				setScrollTop(this.scrollEl, getElementTop(this.$el))
+				setScrollTop(this.scrollEl, getTop(this.$el))
 			}
 		},
 
@@ -113,16 +114,20 @@ export default {
 	methods: {
 		scrollHandler(init) {
 			this.scrollEl = this.scrollEl || getScrollEventTarget(this.$el)
+			/* eslint-disable */
 			(init ? on : off)(this.scrollEl, 'scroll', this.onScroll, true)
+			/* eslint-enable */
 			if (init) this.onScroll()
 		},
 
 		swipeableHandler(init) {
 			const swipeableEl = this.$refs.content
+			/* eslint-disable */
 			(init ? on : off)(swipeableEl, 'touchstart', this.onTouchStart, false)
 			(init ? on : off)(swipeableEl, 'touchmove', this.onTouchMove, false)
 			(init ? on : off)(swipeableEl, 'touchend', this.onTouchEnd, false)
 			(init ? on : off)(swipeableEl, 'touchcancel', this.onTouchEnd, false)
+			/* eslint-enable */
 		},
 
 		onTouchStart(e) {
@@ -131,7 +136,7 @@ export default {
 		},
 
 		onTouchMove(e) {
-			this.deltaX = event.touches[0].clientX - this.startX
+			this.deltaX = e.touches[0].clientX - this.startX
 			this.direction = this.getDirection(event.touches[0])
 		},
 
@@ -156,7 +161,7 @@ export default {
 
 		onScroll() {
 			const scrollTop = getScrollTop(this.scrollEl)
-			const elTopToPageTop = getElementTop(this.$el)
+			const elTopToPageTop = getTop(this.$el)
 			const elBottomToPageTop = elTopToPageTop + this.$el.offsetHeight - this.$refs.wrap.offsetHeight
 			if (scrollTop > elBottomToPageTop) {
 				this.position = 'content-bottom'
@@ -176,8 +181,8 @@ export default {
 					width: `${tab.offsetWidth || 0}px`,
 					transform: `translate(${tab.offsetLeft || 0}px, 0)`,
 					transitionDuration: `${this.duration}s`
-				};
-			});
+				}
+			})
 		},
 
 		correctActive(active) {
@@ -212,8 +217,8 @@ export default {
 			let count = 0
 			const frames = Math.round(this.duration * 1000 / 16)
 			const animate = () => {
-				el.scrollLeft += (to - from) / frames;
-				if (++count < frames) raf(animate);
+				el.scrollLeft += (to - from) / frames
+				if (++count < frames) raf(animate)
 			}
 			animate()
 		}
@@ -222,14 +227,20 @@ export default {
 </script>
 
 <style lang="less">
+@import '../css/common/var';
+
+@yo-tab-height: 44px;
+
 .yo-tab-list {
 	position: relative;
+	padding-top: @yo-tab-height;
 
 	&__wrap {
 		position: absolute;
 		top: 0;
 		right: 0;
 		left: 0;
+		height: @yo-tab-height;
 		overflow: hidden;
 		z-index: 99;
 
@@ -246,13 +257,34 @@ export default {
 	&__nav {
 		display: flex;
 		position: relative;
+		height: 100%;
+		padding-bottom: 15px;
 		background-color: @white;
 		user-select: none;
 
-		&--line {
-			box-sizing: content-box;
-			height: 100%;
-			padding-bottom: 15px;
+		&-bar {
+			position: absolute;
+			bottom: 15px;
+			left: 0;
+			height: 2px;
+			background-color: @red;
+			z-index: 1;
+		}
+	}
+
+	&--scrollable {
+		.yo-tab {
+			flex: 0 0 22%;
+		}
+
+		.yo-tab-list__nav {
+			overflow: hidden;
+			overflow-x: auto;
+			-webkit-overflow-scrolling: touch;
+
+			&::-webkit-scrollbar {
+				display: none;
+			}
 		}
 	}
 }

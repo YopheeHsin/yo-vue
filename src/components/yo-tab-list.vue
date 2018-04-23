@@ -291,7 +291,7 @@ export default {
 	.yo-tab {
 		position: relative;
 		box-sizing: border-box;
-		flex: 1;
+		// flex: 1;
 		line-height: @yo-tab-height;
 		padding: 0 5px;
 		background-color: @white;

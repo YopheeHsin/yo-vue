@@ -2,6 +2,21 @@
 
 > learn vue
 
+修改 .eslintignore，增加
+```
+/node_modules/
+```
+
+修改 .editorconfig
+```
+[src/**/*]
+charset = utf-8
+indent_style = tab
+indent_size = 4
+end_of_line = lf
+insert_final_newline = true
+trim_trailing_whitespace = true
+```
 
 修改 .eslintrc.js
 ```

@@ -33,8 +33,8 @@ rules: {
 
 安装
 ```
-yarn add less --dev
-yarn add less-loader --dev
+yarn add less less-loader -D
+yarn add pug pug-loader pug-filters -D
 ```
 
 修改 webpack.base.conf.js

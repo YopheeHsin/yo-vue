@@ -1,13 +1,12 @@
 <template lang="pug">
-div
-	yo-cell-group(border)
-		yo-cell(
-			v-for="item in list"
-			:key="item"
-			:title="item"
-			:to="'/' + item"
-			is-link
-		)
+yo-cell-group(border)
+	yo-cell(
+		v-for="item in list"
+		:key="item"
+		:title="item"
+		:to="'/' + item"
+		is-link
+	)
 </template>
 
 <script>

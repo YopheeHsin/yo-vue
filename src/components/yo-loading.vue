@@ -15,11 +15,11 @@ export default {
 
 	props: {
 		size: String,
-		type: {
+		type: {					//类型，可选值为circular, spinner, circle, gradient-circle
 			type: String,
 			default: 'circular'
 		},
-		color: {
+		color: {				//颜色，可选值为black, white
 			type: String,
 			default: 'black'
 		}
@@ -48,9 +48,14 @@ export default {
 	vertical-align: middle
 	z-index: 0
 
-	&--circle
-		width: 16px
-		height: 16px
+	&__circular
+		width: 100%
+		height: 100%
+
+		circle
+			stroke-width: 3
+			stroke-linecap: round
+			animation: yo-circular 1.5s ease-in-out infinite
 
 	&__spinner
 		display: inline-block
@@ -60,13 +65,6 @@ export default {
 		height: 100%
 		z-index: -1
 		animation: yo-rotate 0.8s linear infinite
-
-		&--circle
-			border: 3px solid transparent
-			border-radius: 100%
-
-		&--gradient-circle
-			background-size: contain
 
 		&--spinner
 			animation-timing-function: steps(12)
@@ -87,45 +85,41 @@ export default {
 					border-radius: 40%
 					background-color: currentColor
 
-		&--circular
-			animation-duration: 2s
+		&--circle
+			border: 3px solid transparent
+			border-radius: 100%
+			// animation-duration: 2s
 
-	&__circular
-		width: 100%
-		height: 100%
-
-		circle
-			stroke-width: 3
-			stroke-linecap: round
-			animation: yo-circular 1.5s ease-in-out infinite
+		&--gradient-circle
+			background-size: contain
 
 	&--black
+		.yo-loading__spinner--spinner
+			color: $dark
+
 		.yo-loading__spinner--circle
 			border-color: $gray
-			border-top-color: $gray
+			border-top-color: $light
 
 		.yo-loading__spinner--gradient-circle
 			background-image: url('../assets/gradient-circle-black.png')
 
-		.yo-loading__spinner--spinner
-			color: $gray
-
 		circle
-			stroke: $gray
+			stroke: $dark
 
 	&--white
+		.yo-loading__spinner--spinner
+			color: $light
+
 		.yo-loading__spinner--circle
-			border-color: rgba(0, 0, 0, .1)
-			border-top-color: rgba(255, 255, 255, .7)
+			border-color: $light
+			border-top-color: $gray
 
 		.yo-loading__spinner--gradient-circle
 			background-image: url('../assets/gradient-circle-white.png')
 
-		.yo-loading__spinner--spinner
-			color: $white
-
 		circle
-			stroke: $white
+			stroke: $light
 
 @keyframes yo-rotate
 	from
@@ -145,7 +139,7 @@ export default {
 		stroke-dashoffset: -120
 
 @for $i from 1 to 12
-	.yo-loading__spinner--spinner i:nth-of-type($i)
-		opacity: calc(1 - (0.75 / 12) * ($i - 1))
-		transform: rotate(calc($i * 30deg))
+	.yo-loading__spinner--spinner i:nth-of-type(#{$i})
+		opacity: calc(1 - (0.75 / 12) * (#{$i} - 1))
+		transform: rotate(calc(#{$i} * 30deg))
 </style>

@@ -10,10 +10,10 @@
 	</div>
 	<div>
 		<yo-loading type="circle" color="black" />
-		<yo-loading type="circle" color="white" size="30px" />
+		<yo-loading type="circle" color="white" />
 	</div>
 	<div>
-		<yo-loading type="gradient-circle" color="black" size="16px" />
+		<yo-loading type="gradient-circle" color="black" />
 		<yo-loading type="gradient-circle" color="white" />
 	</div>
 </div>
@@ -30,6 +30,8 @@ export default {
 </script>
 
 <style lang="sass">
+@import '../css/common/var'
+
 .demo-loading
 	text-align: center
 
@@ -39,6 +41,6 @@ export default {
 		padding: 10px
 
 		&--white
-			background-color: rgba(0, 0, 0, .5)
+			background-color: $mask
 			border-radius: 3px
 </style>

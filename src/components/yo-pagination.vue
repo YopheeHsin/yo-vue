@@ -5,7 +5,7 @@ ul.yo-pagination(:class="{ 'yo-pagination-simple': !isMultiMode }")
 		@click="selectPage(value - 1)"
 	) {{ prevText }}
 	li.yo-pagination__item.yo-pagination__page.yo-hairline(
-		v-for="(page, index) in pages"
+		v-for="(page, index) in (isMultiMode ? pages : [])"
 		:key="index"
 		:class="{ 'yo-pagination--active': page.active }"
 		@click="selectPage(page.number)"
@@ -67,7 +67,6 @@ export default {
 		},
 
 		pages() {
-			if (!this.isMultiMode) return []
 			const pages = []
 			const pageCount = this.computedPageCount
 

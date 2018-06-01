@@ -2,12 +2,7 @@
 .yo-tab-list
 	.yo-tab-list__wrap.yo-hairline--top-bottom(
 		ref="wrap"
-		:class="[
-			`yo-tab-list__wrap--${position}`,
-			{
-				'yo-tab-list--scrollable': scrollable
-			}
-		]"
+		:class="[`yo-tab-list__wrap--${position}`, { 'yo-tab-list--scrollable': scrollable }]"
 	)
 		.yo-tab-list__nav(ref="nav")
 			.yo-tab-list__nav-bar(:style="navBarStyle")
@@ -15,10 +10,7 @@
 				ref="tabs"
 				v-for="(tab, index) in tabs"
 				:key="index"
-				:class="{
-					'yo-tab--active': index === curActive,
-					'yo-tab--disabled': tab.disabled
-				}"
+				:class="{ 'yo-tab--active': index === curActive, 'yo-tab--disabled': tab.disabled }"
 				@click="onClick(index)"
 			)
 				yo-node(v-if="tab.$slots.title" :node="tab.$slots.title")
@@ -287,7 +279,7 @@ $yo-tab-height: 44px
 		background-color: $white
 		text-align: center
 		font-size: 14px
-		color: $text-color
+		color: $dark
 		min-width: 0 /* hack for flex ellipsis */
 		cursor: pointer
 
@@ -295,7 +287,7 @@ $yo-tab-height: 44px
 			display: block
 
 		&:active
-			background-color: $active-color
+			background-color: $light
 
 		&--active
 			color: $red

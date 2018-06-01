@@ -132,15 +132,15 @@ export default {
 		.yo-stepper__input,
 		.yo-stepper__minus,
 		.yo-stepper__plus
-			border-color: @active-color
+			border-color: $gray
 
 	&__stepper
 		position: relative
 		box-sizing: border-box
 		width: 40px
 		height: 30px
-		background-color: @white
-		border: 1px solid @border-color
+		background-color: $white
+		border: 1px solid $gray
 		padding: 5px
 		vertical-align: middle
 
@@ -155,16 +155,19 @@ export default {
 		&::before, &::after
 			content: ''
 			position: absolute
-			top: 0 right: 0 bottom: 0 left: 0
+			top: 0
+			right: 0
+			bottom: 0
+			left: 0
 			margin: auto
-			background-color: @gray-darker
+			background-color: $dark
 
 	&__minus, &__plus
 		&:active
-			background-color: @active-color
+			background-color: $dark
 
 		&--disabled:active
-			background-color: @background-color
+			background-color: $dark
 
 	&__minus
 		border-radius: 2px 0 0 2px
@@ -173,25 +176,25 @@ export default {
 			display: none
 
 		&--disabled
-			background-color: @background-color
-			border-color: @active-color @border-color @active-color @active-color
+			background-color: $light
+			border-color: $gray $gray $gray $gray
 
 	&__plus
 		border-radius: 0 2px 2px 0
 
 		&--disabled
-			background-color: @background-color
-			border-color: @active-color @active-color @active-color @border-color
+			background-color: $light
+			border-color: $gray $gray $gray $gray
 
 	&__input
 		box-sizing: content-box
 		width: 33px
 		height: 26px
 		padding: 1px
-		border: 1px solid @border-color
+		border: 1px solid $gray
 		border-width: 1px 0
 		border-radius: 0
-		color: @gray-darker
+		color: $dark
 		font-size: 14px
 		text-align: center
 		vertical-align: middle

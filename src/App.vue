@@ -1,27 +1,33 @@
-<template>
-<div>
-	<yo-cell-group border>
-		<yo-cell title="loading" is-link to="/loading" />
-		<yo-cell title="icon" is-link to="/icon" />
-		<yo-cell title="stepper" is-link to="/stepper" />
-		<yo-cell title="collapse" is-link to="/collapse" />
-		<yo-cell title="pagination" is-link to="/pagination" />
-		<yo-cell title="switch" is-link to="/switch" />
-		<yo-cell title="tab" is-link to="/tab" />
-	</yo-cell-group>
-</div>
+<template lang="pug">
+div
+	yo-cell-group(border)
+		yo-cell(
+			v-for="item in list"
+			:key="item"
+			:title="item"
+			:to="'/' + item"
+			is-link
+		)
 </template>
 
 <script>
 import YoCellGroup from './components/yo-cell-group'
 import YoCell from './components/yo-cell'
+import routes from './router/routes'
 
 export default {
 	name: 'App',
 
-	components: {
-		YoCellGroup,
-		YoCell
+	components: { YoCellGroup, YoCell },
+
+	data() {
+		const list = []
+		routes.forEach(item => {
+			if (['/', '/test'].indexOf(item.path) === -1) list.push(item.path.replace('/', ''))
+		})
+		return {
+			list
+		}
 	}
 }
 </script>

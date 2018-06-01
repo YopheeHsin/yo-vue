@@ -1,5 +1,5 @@
 <template lang="pug">
-ul.yo-pagination"(:class="{ 'yo-pagination-simple': !isMultiMode }")
+ul.yo-pagination(:class="{ 'yo-pagination-simple': !isMultiMode }")
 	li.yo-pagination__item.yo-pagination__prev.yo-hairline(
 		:class="{ 'yo-pagination--disabled': value === 1 }"
 		@click="selectPage(value - 1)"

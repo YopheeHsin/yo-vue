@@ -21,8 +21,6 @@ export default {
 }
 </script>
 
-<style lang="less">
-.demo-test {
-
-}
+<style lang="sass">
+.demo-test
 </style>

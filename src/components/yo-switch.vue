@@ -1,9 +1,6 @@
-<template>
+<template lang="pug">
 .yo-switch(
-	:class="{
-		'yo-switch--on': value,
-		'yo-switch--disabled': disabled
-	}"
+	:class="{ 'yo-switch--on': value, 'yo-switch--disabled': disabled }"
 	:style="style"
 	@click="onClick"
 )
@@ -56,7 +53,7 @@ export default {
 	position: relative
 	height: 1em
 	width: 1.6em
-	background: @white
+	background: $white
 	border: 1px solid rgba(0, 0, 0, .1)
 	border-radius: 1em
 
@@ -66,7 +63,7 @@ export default {
 		left: 0
 		width: 1em
 		height: 1em
-		background-color: @white
+		background-color: $white
 		box-shadow: 0 3px 1px 0 rgba(0, 0, 0, .05), 0 2px 2px 0 rgba(0, 0, 0, .1), 0 3px 3px 0 rgba(0, 0, 0, .05)
 		border-radius: 100%
 		transition: .3s
@@ -79,7 +76,7 @@ export default {
 		height: 50%!important
 
 	&--on
-		background-color: @green
+		background-color: $green
 
 		.yo-switch__node
 			transform: translateX(.6em)

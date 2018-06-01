@@ -21,8 +21,7 @@ export default {
 }
 </script>
 
-<style>
-.switch-demo {
-	padding: 20px;
-}
+<style lang="sass">
+.switch-demo
+	padding: 20px
 </style>

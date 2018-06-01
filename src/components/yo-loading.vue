@@ -1,9 +1,6 @@
 <template lang="pug">
 .yo-loading(
-	:class="[
-		'yo-loading--' + type,
-		'yo-loading--' + color
-	]"
+	:class="['yo-loading--' + type, 'yo-loading--' + color]"
 	:style="style"
 )
 	span.yo-loading__spinner(:class="'yo-loading__spinner--' + type")
@@ -104,17 +101,17 @@ export default {
 
 	&--black
 		.yo-loading__spinner--circle
-			border-color: @gray
-			border-top-color: @gray-darker
+			border-color: $gray
+			border-top-color: $gray
 
 		.yo-loading__spinner--gradient-circle
 			background-image: url('../assets/gradient-circle-black.png')
 
 		.yo-loading__spinner--spinner
-			color: @gray
+			color: $gray
 
 		circle
-			stroke: @gray
+			stroke: $gray
 
 	&--white
 		.yo-loading__spinner--circle
@@ -125,10 +122,10 @@ export default {
 			background-image: url('../assets/gradient-circle-white.png')
 
 		.yo-loading__spinner--spinner
-			color: @white
+			color: $white
 
 		circle
-			stroke: @white
+			stroke: $white
 
 @keyframes yo-rotate
 	from

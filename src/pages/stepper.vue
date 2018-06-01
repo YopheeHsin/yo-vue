@@ -36,17 +36,14 @@ export default {
 }
 </script>
 
-<style lang="less">
-.demo-stepper {
-	margin: 20px;
+<style lang="sass">
+.demo-stepper
+	margin: 20px
 
-	p {
-		padding-top: 10px;
+	p
+		padding-top: 10px
 
-		&:last-of-type {
-			font-size: 12px;
-			color: #999;
-		}
-	}
-}
+		&:last-of-type
+			font-size: 12px
+			color: #999
 </style>

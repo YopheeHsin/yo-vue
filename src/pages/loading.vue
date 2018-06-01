@@ -29,19 +29,16 @@ export default {
 }
 </script>
 
-<style lang="less">
-.demo-loading {
-	text-align: center;
+<style lang="sass">
+.demo-loading
+	text-align: center
 
-	.yo-loading {
-		display: inline-block;
-		margin: 20px 10px;
-		padding: 10px;
+	.yo-loading
+		display: inline-block
+		margin: 20px 10px
+		padding: 10px
 
-		&--white {
-			background-color: rgba(0, 0, 0, .5);
-			border-radius: 3px;
-		}
-	}
-}
+		&--white
+			background-color: rgba(0, 0, 0, .5)
+			border-radius: 3px
 </style>

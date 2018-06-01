@@ -464,27 +464,23 @@ export default {
 }
 </script>
 
-<style lang="less">
-.demo-icon {
-	div {
-		position: relative;
-		width: 100%;
-		height: 40px;
-		font-size: 24px;
+<style lang="sass">
+.demo-icon
+	div
+		position: relative
+		width: 100%
+		height: 40px
+		font-size: 24px
 
-		.yo-icon {
-			position: absolute;
-			width: 40px;
-			line-height: 40px;
-			text-align: center;
-		}
+		.yo-icon
+			position: absolute
+			width: 40px
+			line-height: 40px
+			text-align: center
 
-		span {
-			display: inline-block;
-			line-height: 40px;
-			margin-left: 50px;
-			font-size: 12px;
-		}
-	}
-}
+		span
+			display: inline-block
+			line-height: 40px
+			margin-left: 50px
+			font-size: 12px
 </style>

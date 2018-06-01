@@ -1,8 +1,6 @@
 <template lang="pug">
 .yo-tab-item(
-	:class="{
-		'yo-tab-item--select': index === parentGroup.curActive
-	}"
+	:class="{ 'yo-tab-item--select': index === parentGroup.curActive }"
 )
 	slot
 </template>

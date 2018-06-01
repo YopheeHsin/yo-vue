@@ -90,12 +90,10 @@ export default {
 }
 </script>
 
-<style lang="less">
-.demo-tab {
-	.yo-tab-item {
-		padding: 5px 15px;
-		line-height: 1.8em;
-		font-size: 14px;
-	}
-}
+<style lang="sass">
+.demo-tab
+	.yo-tab-item
+		padding: 5px 15px
+		line-height: 1.8em
+		font-size: 14px
 </style>

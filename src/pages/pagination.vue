@@ -44,8 +44,6 @@ export default {
 }
 </script>
 
-<style lang="less">
-.demo-pagination {
-
-}
+<style lang="sass">
+.demo-pagination
 </style>

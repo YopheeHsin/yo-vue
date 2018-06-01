@@ -1,14 +1,9 @@
 <template lang="pug">
 .yo-cell(
-	:class="{
-		'yo-hairline': border,
-		'yo-cell--center': center,
-		'yo-cell--required': required,
-		'yo-cell--clickable': isLink || clickable
-	}"
+	:class="{ 'yo-hairline': border, 'yo-cell--center': center, 'yo-cell--required': required, 'yo-cell--clickable': isLink || clickable }"
 	@click="onClick"
 )
-	.yo-cell__title(v-if="title || icon || $slots.title || $slots.icon)
+	.yo-cell__title(v-if="title || icon || $slots.title || $slots.icon")
 		slot(name="icon")
 			yo-icon(v-if="icon" :name="icon")
 		slot(name="title")
@@ -16,10 +11,7 @@
 			.yo-cell__label(v-if="label" v-text="label")
 	.yo-cell__value(
 		v-if="value || $slots.default"
-		:class="{
-			'yo-cell__value--link': isLink,
-			'yo-cell__value--alone': !$slots.title && !title && !label
-		}"
+		:class="{ 'yo-cell__value--link': isLink, 'yo-cell__value--alone': !$slots.title && !title && !label }"
 	)
 		slot
 			span(v-text="value")
@@ -64,7 +56,7 @@ export default {
 </script>
 
 <style lang="sass">
-$import '../css/common/var'
+@import '../css/common/var'
 
 .yo-cell
 	display: flex

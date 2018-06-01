@@ -38,11 +38,9 @@ export default {
 }
 </script>
 
-<style lang="less">
-.demo-collapse {
-	p {
-		margin: 0;
-		font-size: 14px;
-	}
-}
+<style lang="sass">
+.demo-collapse
+	p
+		margin: 0
+		font-size: 14px
 </style>

@@ -33,14 +33,15 @@ rules: {
 
 安装
 ```
-yarn add less less-loader -D
+<del>yarn add less less-loader -D</del>
+yarn add node-sass sass-loader -D
 yarn add pug pug-loader pug-filters -D
 ```
 
 修改 webpack.base.conf.js
 ```
 resolve: {
-    extensions: ['.js', '.vue', '.json', '.less']
+    extensions: ['.js', '.vue', '.json', '.sass']
 }
 ```
 

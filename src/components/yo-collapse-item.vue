@@ -1,15 +1,14 @@
-<template>
-<div class="yo-collapse-item" :class="{
-	'yo-hairline--top': index,
-	'yo-collapse-item--expanded': expanded
-}">
-	<yo-cell class="yo-collapse-item__title" is-link @click="onClick">
-		<slot name="title">{{ title }}</slot>
-	</yo-cell>
-	<div class="yo-collapse-item__content" v-show="expanded">
-		<slot />
-	</div>
-</div>
+<template lang="pug">
+.yo-collapse-item(
+	:class="{
+		'yo-hairline--top': index,
+		'yo-collapse-item--expanded': expanded
+	}"
+)
+	yo-cell.yo-collapse-item__title(is-link @click="onClick")
+		slot(name="title") {{ title }}
+	.yo-collapse-item__content(v-show="expanded")
+		slot
 </template>
 
 <script>
@@ -20,9 +19,7 @@ import { isDef } from '../utils'
 export default {
 	name: 'yo-collapse-item',
 
-	components: {
-		YoCell
-	},
+	components: { YoCell },
 
 	mixins: [findParent],
 
@@ -52,15 +49,6 @@ export default {
 		}
 	},
 
-	created() {
-		this.findParentByName('yo-collapse-list')
-		this.items.push(this)
-	},
-
-	destroyed() {
-		this.items.splice(this.index, 1)
-	},
-
 	methods: {
 		onClick() {
 			const { parentGroup } = this
@@ -69,41 +57,40 @@ export default {
 				? '' : this.currentName
 			this.parentGroup.switch(name, !this.expanded)
 		}
+	},
+
+	created() {
+		this.findParentByName('yo-collapse-list')
+		this.items.push(this)
+	},
+
+	destroyed() {
+		this.items.splice(this.index, 1)
 	}
 }
 </script>
 
-<style lang="less">
-@import '../css/common/var';
+<style lang="sass">
+@import '../css/common/var'
 
-.yo-collapse-item {
-	&__title {
-		.yo-cell__right-icon::before {
-			transition: .3s;
-			transform: rotate(90deg);
-		}
+.yo-collapse-item
+	&__title
+		.yo-cell__right-icon::before
+			transition: .3s
+			transform: rotate(90deg)
 
-		&::after {
-			visibility: hidden;
-		}
-	}
+		&::after
+			visibility: hidden
 
-	&__content {
-		padding: 15px;
-		background-color: @white;
-	}
+	&__content
+		padding: 15px
+		background-color: $white
 
-	&--expanded {
-		.yo-collapse-item__title {
-			.yo-cell__right-icon::before {
-				transform: rotate(-90deg);
-			}
+	&--expanded
+		.yo-collapse-item__title
+			.yo-cell__right-icon::before
+				transform: rotate(-90deg)
 
-			&::after {
-				visibility: visible;
-			}
-
-		}
-	}
-}
+			&::after
+				visibility: visible
 </style>

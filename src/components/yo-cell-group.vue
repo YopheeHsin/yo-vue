@@ -1,7 +1,6 @@
-<template>
-	<div class="yo-cell-group" :class="{ 'yo-hairline--top-bottom': border }">
-		<slot />
-	</div>
+<template lang="pug">
+.yo-cell-group(:class="{ 'yo-hairline--top-bottom': border }")
+	slot
 </template>
 
 <script>

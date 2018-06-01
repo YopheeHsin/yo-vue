@@ -1,7 +1,6 @@
-<template>
-<div class="yo-collapse-list yo-hairline--top-bottom">
-	<slot />
-</div>
+<template lang="pug">
+.yo-collapse-list.yo-hairline--top-bottom
+	slot
 </template>
 
 <script>

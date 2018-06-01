@@ -1,29 +1,30 @@
-<template>
-<div class="yo-tab-list">
-	<div ref="wrap" class="yo-tab-list__wrap yo-hairline--top-bottom" :class="[
-		`yo-tab-list__wrap--${position}`,
-		{
-			'yo-tab-list--scrollable': scrollable
-		}
-	]">
-		<div ref="nav" class="yo-tab-list__nav">
-			<div class="yo-tab-list__nav-bar" :style="navBarStyle" />
-			<div ref="tabs" v-for="(tab, index) in tabs" :key="index"
-				class="yo-tab" :class="{
+<template lang="pug">
+.yo-tab-list
+	.yo-tab-list__wrap.yo-hairline--top-bottom(
+		ref="wrap"
+		:class="[
+			`yo-tab-list__wrap--${position}`,
+			{
+				'yo-tab-list--scrollable': scrollable
+			}
+		]"
+	)
+		.yo-tab-list__nav(ref="nav")
+			.yo-tab-list__nav-bar(:style="navBarStyle")
+			.yo-tab(
+				ref="tabs"
+				v-for="(tab, index) in tabs"
+				:key="index"
+				:class="{
 					'yo-tab--active': index === curActive,
 					'yo-tab--disabled': tab.disabled
 				}"
 				@click="onClick(index)"
-			>
-				<yo-node v-if="tab.$slots.title" :node="tab.$slots.title" />
-				<span v-else class="yo-ellipsis">{{ tab.title }}</span>
-			</div>
-		</div>
-	</div>
-	<div ref="content" class="yo-tab-list__content">
-		<slot />
-	</div>
-</div>
+			)
+				yo-node(v-if="tab.$slots.title" :node="tab.$slots.title")
+				span.yo-ellipsis(v-else) {{ tab.title }}
+	.yo-tab-list__content(ref="content")
+		slot
 </template>
 
 <script>
@@ -35,9 +36,7 @@ import { raf } from '../utils/raf'
 export default {
 	name: 'yo-tab-list',
 
-	components: {
-		YoNode
-	},
+	components: { YoNode },
 
 	data() {
 		return {
@@ -226,100 +225,84 @@ export default {
 }
 </script>
 
-<style lang="less">
-@import '../css/common/var';
+<style lang="sass">
+@import '../css/common/var'
 
-@yo-tab-height: 44px;
+$yo-tab-height: 44px
 
-.yo-tab-list {
-	position: relative;
-	padding-top: @yo-tab-height;
+.yo-tab-list
+	position: relative
+	padding-top: $yo-tab-height
 
-	&__wrap {
-		position: absolute;
-		top: 0;
-		right: 0;
-		left: 0;
-		height: @yo-tab-height;
-		overflow: hidden;
-		z-index: 99;
+	&__wrap
+		position: absolute
+		top: 0
+		right: 0
+		left: 0
+		height: $yo-tab-height
+		overflow: hidden
+		z-index: 99
 
-		&--page-top {
-			position: fixed;
-		}
+		&--page-top
+			position: fixed
 
-		&--content-bottom {
-			top: auto;
-			bottom: 0;
-		}
-	}
+		&--content-bottom
+			top: auto
+			bottom: 0
 
-	&__nav {
-		display: flex;
-		position: relative;
-		height: 100%;
-		padding-bottom: 15px;
-		background-color: @white;
-		user-select: none;
+	&__nav
+		display: flex
+		position: relative
+		height: 100%
+		padding-bottom: 15px
+		background-color: $white
+		user-select: none
 
-		&-bar {
-			position: absolute;
-			bottom: 15px;
-			left: 0;
-			height: 2px;
-			background-color: @red;
-			z-index: 1;
-		}
-	}
+		&-bar
+			position: absolute
+			bottom: 15px
+			left: 0
+			height: 2px
+			background-color: $red
+			z-index: 1
 
-	&--scrollable {
-		.yo-tab {
-			flex: 0 0 22%;
-		}
+	&--scrollable
+		.yo-tab
+			flex: 0 0 22%
 
-		.yo-tab-list__nav {
-			overflow: hidden;
-			overflow-x: auto;
-			-webkit-overflow-scrolling: touch;
+		.yo-tab-list__nav
+			overflow: hidden
+			overflow-x: auto
+			-webkit-overflow-scrolling: touch
 
-			&::-webkit-scrollbar {
-				display: none;
-			}
-		}
-	}
+			&::-webkit-scrollbar
+				display: none
 
-	.yo-tab {
-		position: relative;
-		box-sizing: border-box;
-		// flex: 1;
-		line-height: @yo-tab-height;
-		padding: 0 5px;
-		background-color: @white;
-		text-align: center;
-		font-size: 14px;
-		color: @text-color;
-		min-width: 0; /* hack for flex ellipsis */
-		cursor: pointer;
+	.yo-tab
+		position: relative
+		box-sizing: border-box
+		// flex: 1
+		line-height: $yo-tab-height
+		padding: 0 5px
+		background-color: $white
+		text-align: center
+		font-size: 14px
+		color: $text-color
+		min-width: 0 /* hack for flex ellipsis */
+		cursor: pointer
 
-		span {
-			display: block;
-		}
+		span
+			display: block
 
-		&:active {
-			background-color: @active-color;
-		}
+		&:active
+			background-color: $active-color
 
-		&--active {
-			color: @red;
-		}
+		&--active
+			color: $red
 
-		&--disabled {
-			color: @gray;
+		&--disabled
+			color: $gray
 
-			&:active {
-				background-color: @white;
-			}
-		}
-	}
-}
+			&:active
+				background-color: $white
 </style>

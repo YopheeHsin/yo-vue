@@ -1,9 +1,10 @@
-<template>
-<div class="yo-tab-item" :class="{
-	'yo-tab-item--select': index === parentGroup.curActive
-}">
-	<slot/>
-</div>
+<template lang="pug">
+.yo-tab-item(
+	:class="{
+		'yo-tab-item--select': index === parentGroup.curActive
+	}"
+)
+	slot
 </template>
 
 <script>
@@ -36,12 +37,10 @@ export default {
 }
 </script>
 
-<style lang="less">
-.yo-tab-item {
+<style lang="sass">
+.yo-tab-item
 	display: none;
 
-	&--select {
+	&--select
 		display: block;
-	}
-}
 </style>

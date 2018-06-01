@@ -1,20 +1,19 @@
-<template>
-<div class="yo-stepper" :class="{ 'yo-stepper--disabled': disabled }">
-	<button class="yo-stepper__stepper yo-stepper__minus"
+<template lang="pug">
+.yo-stepper(:class="{ 'yo-stepper--disabled': disabled }")
+	button.yo-stepper__stepper.yo-stepper__minus(
 		:class="{ 'yo-stepper__minus--disabled': isMinusDisabled }"
 		@click="onChange('minus')"
-	/>
-	<input type="number"
-		class="yo-stepper__input"
+	)
+	input.yo-stepper__input(
+		type="number"
 		:value="currentValue"
 		:disabled="disabled || disableInput"
 		@input="onInput"
-	>
-	<button class="yo-stepper__stepper yo-stepper__plus"
+	)
+	button.yo-stepper__stepper.yo-stepper__plus(
 		:class="{ 'yo-stepper__plus--disabled': isPlusDisabled }"
 		@click="onChange('plus')"
-	/>
-</div>
+	)
 </template>
 
 <script>
@@ -123,100 +122,83 @@ export default {
 }
 </script>
 
-<style lang="less">
-@import '../css/common/var';
+<style lang="sass">
+@import '../css/common/var'
 
-.yo-stepper {
-	font-size: 0;
+.yo-stepper
+	font-size: 0
 
-	&--disabled {
+	&--disabled
 		.yo-stepper__input,
 		.yo-stepper__minus,
-		.yo-stepper__plus {
-			border-color: @active-color;
-		}
-	}
+		.yo-stepper__plus
+			border-color: @active-color
 
-	&__stepper {
-		position: relative;
-		box-sizing: border-box;
-		width: 40px;
-		height: 30px;
-		background-color: @white;
-		border: 1px solid @border-color;
-		padding: 5px;
-		vertical-align: middle;
+	&__stepper
+		position: relative
+		box-sizing: border-box
+		width: 40px
+		height: 30px
+		background-color: @white
+		border: 1px solid @border-color
+		padding: 5px
+		vertical-align: middle
 
-		&::before {
-			width: 9px;
-			height: 1px;
-		}
+		&::before
+			width: 9px
+			height: 1px
 
-		&::after {
-			width: 1px;
-			height: 9px;
-		}
+		&::after
+			width: 1px
+			height: 9px
 
-		&::before, &::after {
-			content: '';
-			position: absolute;
-			top: 0; right: 0; bottom: 0; left: 0;
-			margin: auto;
-			background-color: @gray-darker;
-		}
-	}
+		&::before, &::after
+			content: ''
+			position: absolute
+			top: 0 right: 0 bottom: 0 left: 0
+			margin: auto
+			background-color: @gray-darker
 
-	&__minus, &__plus {
-		&:active {
-			background-color: @active-color;
-		}
+	&__minus, &__plus
+		&:active
+			background-color: @active-color
 
-		&--disabled:active {
-			background-color: @background-color;
-		}
-	}
+		&--disabled:active
+			background-color: @background-color
 
-	&__minus {
-		border-radius: 2px 0 0 2px;
+	&__minus
+		border-radius: 2px 0 0 2px
 
-		&::after {
-			display: none;
-		}
+		&::after
+			display: none
 
-		&--disabled {
-			background-color: @background-color;
-			border-color: @active-color @border-color @active-color @active-color;
-		}
-	}
+		&--disabled
+			background-color: @background-color
+			border-color: @active-color @border-color @active-color @active-color
 
-	&__plus {
-		border-radius: 0 2px 2px 0;
+	&__plus
+		border-radius: 0 2px 2px 0
 
-		&--disabled {
-			background-color: @background-color;
-			border-color: @active-color @active-color @active-color @border-color;
-		}
-	}
+		&--disabled
+			background-color: @background-color
+			border-color: @active-color @active-color @active-color @border-color
 
-	&__input {
-		box-sizing: content-box;
-		width: 33px;
-		height: 26px;
-		padding: 1px;
-		border: 1px solid @border-color;
-		border-width: 1px 0;
-		border-radius: 0;
-		color: @gray-darker;
-		font-size: 14px;
-		text-align: center;
-		vertical-align: middle;
-		-webkit-appearance: none;
-	}
+	&__input
+		box-sizing: content-box
+		width: 33px
+		height: 26px
+		padding: 1px
+		border: 1px solid @border-color
+		border-width: 1px 0
+		border-radius: 0
+		color: @gray-darker
+		font-size: 14px
+		text-align: center
+		vertical-align: middle
+		-webkit-appearance: none
 
 	input[type=number]::-webkit-inner-spin-button,
-	input[type=number]::-webkit-outer-spin-button {
-		margin: 0;
-		-webkit-appearance: none;
-	}
-}
+	input[type=number]::-webkit-outer-spin-button
+		margin: 0
+		-webkit-appearance: none
 </style>

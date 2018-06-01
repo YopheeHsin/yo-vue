@@ -1,28 +1,21 @@
-<template>
-<ul class="yo-pagination" :class="{ 'yo-pagination-simple': !isMultiMode }">
-	<li class="yo-pagination__item yo-pagination__prev yo-hairline"
+<template lang="pug">
+ul.yo-pagination"(:class="{ 'yo-pagination-simple': !isMultiMode }")
+	li.yo-pagination__item.yo-pagination__prev.yo-hairline(
 		:class="{ 'yo-pagination--disabled': value === 1 }"
 		@click="selectPage(value - 1)"
-	>
-		{{ prevText }}
-	</li>
-	<li v-if="isMultiMode" v-for="(page, index) in pages" :key="index"
-		class="yo-pagination__item yo-pagination__page yo-hairline"
+	) {{ prevText }}
+	li.yo-pagination__item.yo-pagination__page.yo-hairline(
+		v-for="(page, index) in pages"
+		:key="index"
 		:class="{ 'yo-pagination--active': page.active }"
 		@click="selectPage(page.number)"
-	>
-		{{ page.text }}
-	</li>
-	<li v-if="!isMultiMode" class="yo-pagination__page-desc">
-		<slot name="pageDesc">{{ pageDesc }}</slot>
-	</li>
-	<li class="yo-pagination__item yo-pagination__next yo-hairline"
+	) {{ page.text }}
+	li.yo-pagination__page-desc(v-if="!isMultiMode")
+		slot(name="pageDesc") {{ pageDesc }}
+	li.yo-pagination__item.yo-pagination__next.yo-hairline(
 		:class="{ 'yo-pagination--disabled': value === computedPageCount }"
 		@click="selectPage(value + 1)"
-	>
-		{{ nextText }}
-	</li>
-</ul>
+	) {{ nextText }}
 </template>
 
 <script>
@@ -74,6 +67,7 @@ export default {
 		},
 
 		pages() {
+			if (!this.isMultiMode) return []
 			const pages = []
 			const pageCount = this.computedPageCount
 
@@ -138,74 +132,60 @@ export default {
 }
 </script>
 
-<style lang="less">
-@import '../css/common/var';
+<style lang="sass">
+@import '../css/common/var'
 
-.yo-pagination {
-	display: flex;
-	line-height: 40px;
-	text-align: center;
-	font-size: 14px;
+.yo-pagination
+	display: flex
+	line-height: 40px
+	text-align: center
+	font-size: 14px
 
-	&__item {
-		flex: 1;
-		box-sizing: border-box;
-		min-width: 36px;
-		height: 40px;
-		background-color: @white;
-		color: @blue;
-		user-select: none;
+	&__item
+		flex: 1
+		box-sizing: border-box
+		min-width: 36px
+		height: 40px
+		background-color: $white
+		color: $blue
+		user-select: none
 
-		&:active {
-			background-color: @blue;
-			color: @white;
-			opacity: 0.8;
-		}
+		&:active
+			background-color: $blue
+			color: $white
+			opacity: 0.8
 
-		&::after {
-			border-width: 1px 0 1px 1px;
-		}
+		&::after
+			border-width: 1px 0 1px 1px
 
-		&:last-child::after {
-			border-right-width: 1px;
-		}
-	}
+		&:last-child::after
+			border-right-width: 1px
 
-	&__prev, &__next {
-		&.yo-pagination__item {
-			padding: 0 5px;
-		}
-	}
+	&__prev, &__next
+		&.yo-pagination__item
+			padding: 0 5px
 
-	&__page {
-		flex-grow: 0;
+	&__page
+		flex-grow: 0
 
-		&.yo-pagination--active {
-			background-color: @blue;
-			color: @white;
-		}
-	}
+		&.yo-pagination--active
+			background-color: $blue
+			color: $white
 
-	&--disabled {
-		&.yo-pagination__item {
-			background-color: @background-color;
-			color: @gray-darker;
-			opacity: 0.6;
-		}
-	}
+	&--disabled
+		&.yo-pagination__item
+			background-color: $light
+			color: $gray
+			opacity: 0.6
 
-	&__page-desc {
-		flex: 1;
-		height: 40px;
-		color: @gray-darker;
-	}
-}
+	&__page-desc
+		flex: 1
+		height: 40px
+		color: $gray
 
-.yo-pagination-simple {
-	.yo-pagination__prev, .yo-pagination__next {
-		&.yo-pagination__item::after {
-			border-width: 1px;
-		}
-	}
-}
+.yo-pagination-simple
+	.yo-pagination__prev, .yo-pagination__next
+		&.yo-pagination__item::after
+			border-width: 1px
+
 </style>

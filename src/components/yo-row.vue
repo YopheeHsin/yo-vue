@@ -1,7 +1,6 @@
-<template>
-<div class="yo-row" :style="style">
-	<slot />
-</div>
+<template lang="pug">
+.yo-row(:style="style")
+	slot
 </template>
 
 <script>
@@ -25,12 +24,10 @@ export default {
 }
 </script>
 
-<style lang="less">
-.yo-row {
-	&::after {
-		content: "";
-		display: table;
-		clear: both;
-	}
-}
+<style lang="sass">
+.yo-row
+	&::after
+		content: ""
+		display: table
+		clear: both
 </style>

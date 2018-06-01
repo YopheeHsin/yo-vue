@@ -33,7 +33,6 @@ rules: {
 
 安装
 ```
-<del>yarn add less less-loader -D</del>
 yarn add node-sass sass-loader -D
 yarn add pug pug-loader pug-filters -D
 ```

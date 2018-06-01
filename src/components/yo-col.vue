@@ -1,10 +1,12 @@
-<template>
-<div class="yo-col" :class="{
-	[`yo-col-${span}`]: span,
-	[`yo-col-offset-${offset}`]: offset
-}" :style="style">
-	<slot />
-</div>
+<template lang="pug">
+.yo-col(
+	:class="{
+		[`yo-col-${span}`]: span,
+		[`yo-col-offset-${offset}`]: offset
+	}"
+	:style="style"
+)
+	slot
 </template>
 
 <script>
@@ -30,25 +32,14 @@ export default {
 }
 </script>
 
-<style lang="less">
-.yo-col {
-	float: left;
-	box-sizing: border-box;
-}
+<style lang="sass">
+.yo-col
+	float: left
+	box-sizing: border-box
 
-.generate-col(@n, @i: 1) when (@i =< @n) {
-	.yo-col-@{i} {
-		width: calc(@i * 100% / 24);
-	}
-
-	.yo-col-offset-@{i} {
-		margin-left: calc(@i * 100% / 24);
-	}
-}
-
-// TODO LESS
-// @for $i from 1 to 24 {
-// .yo-col-$i { width: calc($i * 100% / 24); }
-// .yo-col-offset-$i { margin-left: calc($i * 100% / 24); }
-// }
+@for $i from 1 to 24
+  .yo-col-$i
+  		width: calc($i * 100% / 24)
+  .yo-col-offset-$i
+  		margin-left: calc($i * 100% / 24)
 </style>

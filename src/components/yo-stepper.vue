@@ -132,7 +132,8 @@ export default {
 		.yo-stepper__input,
 		.yo-stepper__minus,
 		.yo-stepper__plus
-			border-color: $gray
+			border-color: $light
+			color: $light
 
 	&__stepper
 		position: relative
@@ -141,7 +142,6 @@ export default {
 		height: 30px
 		background-color: $white
 		border: 1px solid $gray
-		padding: 5px
 		vertical-align: middle
 
 		&::before
@@ -164,10 +164,14 @@ export default {
 
 	&__minus, &__plus
 		&:active
-			background-color: $dark
+			background-color: $light
 
-		&--disabled:active
-			background-color: $dark
+		&--disabled
+			&:active
+				background-color: $white
+
+			&::before, &::after
+				background-color: $light
 
 	&__minus
 		border-radius: 2px 0 0 2px
@@ -176,15 +180,13 @@ export default {
 			display: none
 
 		&--disabled
-			background-color: $light
-			border-color: $gray $gray $gray $gray
+			border-color: $light $gray $light $light
 
 	&__plus
 		border-radius: 0 2px 2px 0
 
 		&--disabled
-			background-color: $light
-			border-color: $gray $gray $gray $gray
+			border-color: $light $light $light $gray
 
 	&__input
 		box-sizing: content-box

@@ -50,6 +50,44 @@ export default {
 	},
 
 	methods: {
+		open() {
 
+		},
+
+		close() {
+
+		},
+
+		move() {
+
+		},
+
+		onTouchStart(e) {
+			this.pos = {
+				x: e.touches[0].clientX,
+				y: e.touches[0].clientY
+			}
+		},
+
+		onTouchMove(e) {
+			const { pos } = $(this)
+			const dx = e.touches[0].clientX - pos.x
+			const dy = e.touches[0].clientY - pos.y
+			const direction = dy > 0 ? '10' : '01'
+			const el = scrollUtils.getScrollEventTarget(e.target, this.$el)
+			const { scrollHeight, offsetHeight, scrollTop } = el
+			const isVertical = Math.abs(dx) < Math.abs(dy)
+
+			let status = '11'
+
+			if (scrollTop === 0) {
+				status = offsetHeight >= scrollHeight ? '00' : '01'
+			} else if (scrollTop + offsetHeight >= scrollHeight) {
+				status = '10'
+			}
+
+			if (status !== '11')
+
+		}
 	}
 }

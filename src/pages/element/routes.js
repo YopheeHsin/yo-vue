@@ -1,13 +1,24 @@
 import Index from './index'
 import Tabs from './tabs'
 
+const nestedRoutesComponent = {
+	template: '<router-view />'
+}
+
 export default [{
 	path: '/element',
-	component: Index
-},{
-	path: '/element/tabs',
-	component: Tabs,
-	meta: {
-		label: 'Tabs标签页动态增减'
-	}
+	component: nestedRoutesComponent,
+	children: [
+		{
+			path: '',
+			component: Index
+		},
+		{
+			path: 'tabs',
+			component: Tabs,
+			meta: {
+				label: 'Tabs标签页动态增减'
+			}
+		}
+	]
 }]

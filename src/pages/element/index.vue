@@ -4,7 +4,7 @@ yo-cell-group(border)
 		v-for="(item, index) in list"
 		:key="index"
 		:title="item.meta.label"
-		:to="item.path"
+		:to="'/element/' + item.path"
 		is-link
 	)
 </template>
@@ -18,7 +18,7 @@ export default {
 	components: { YoCellGroup, YoCell },
 
 	data() {
-		const list = routes.filter(item => {
+		const list = routes[0].children.filter(item => {
 			return item.meta && item.meta.label
 		})
 
@@ -27,4 +27,5 @@ export default {
 		}
 	}
 }
+
 </script>

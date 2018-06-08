@@ -17,7 +17,7 @@ export default [{
 			path: 'tabs',
 			component: Tabs,
 			meta: {
-				label: 'Tabs标签页动态增减'
+				label: 'Tabs标签页增删改'
 			}
 		}
 	]

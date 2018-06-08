@@ -1,9 +1,5 @@
 <template lang="pug">
 .editable-tabs
-	el-popover(v-model="visible.editQueue" placement="bottom")
-		el-input(v-model="activeIndex")
-		el-button(type="primary" @click="confirmEditQueue" :loading="loading.editQueue") 确定
-		el-button(@click="visible.editQueue = false") 取消
 	el-tabs.project-tabs(v-model="activeIndex", type="card")
 		el-tab-pane(v-for="(queue, index) in queues" :key="index" :label="queue.name")
 			.project-tab__name(slot="label")
@@ -11,11 +7,26 @@
 				el-dropdown.project-tab__action
 					i.el-icon-more
 					el-dropdown-menu(slot="dropdown")
-						el-dropdown-item(@click.native="editQueue(queue, index)") 编辑
+						el-dropdown-item(@click.native="editQueue(queue)") 编辑
 						el-dropdown-item(
 							v-if="queues.length > 1"
 							@click.native="deleteQueue(queue, index)"
 						) 删除
+				el-popover(
+					:value="visible.editQueue && activeIndex == index"
+					placement="bottom"
+					width="300"
+					@hide="visible.editQueue = false"
+				)
+					.edit-queue-wrapper
+						el-input(v-model="activeQueueName")
+						el-button(
+							type="primary"
+							@click="confirmEditQueue"
+							:loading="loading.editQueue"
+						) 确定
+						el-button(@click="visible.editQueue = false") 取消
+					.popover-reference(slot="reference")
 		el-tab-pane
 			.project-tab__name--add(slot='label' @click.stop="addQueue(queues.length)")
 				i.el-icon-plus
@@ -26,6 +37,7 @@ export default {
 	data() {
 		return {
 			activeIndex: '0',
+			activeQueueName: '',
 			queues: [{
 				name: '燕草如碧丝'
 			}, {
@@ -39,35 +51,43 @@ export default {
 				editQueue: false
 			},
 			visible: {
-				editQueue: true
+				editQueue: false
 			}
 		}
 	},
 
 	methods: {
-		deleteQueue (queue, index) {
-			this.$confirm(`确认删除${queue.name}?`).then(() => {
-				this.queues.splice(index, 1)
-			})
-		},
 		addQueue (length) {
 			this.queues.push({
 				name: 'new' + (length + 1)
 			})
 		},
+		editQueue (queue) {
+			this.activeQueueName = queue.name
+			this.visible.editQueue = true
+		},
+		deleteQueue (queue, index) {
+			this.$confirm(`确认删除${queue.name}?`).then(() => {
+				this.queues.splice(index, 1)
+			})
+		},
 		confirmEditQueue () {
-
+			this.queues[this.activeIndex].name = this.activeQueueName
+			this.visible.editQueue = false
 		}
 	}
 }
 </script>
 
 <style lang="sass">
-.project-tabs
+.editable-tabs
 	margin: 50px
+.edit-queue-wrapper
+	display: flex
+	.el-button:first-of-type
+		margin-left: 10px
 .project-tab
 	&__name
-		display: inline-block
 		min-width: 100px
 		max-width: 150px
 		text-align: center

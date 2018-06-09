@@ -6,7 +6,9 @@ el-aside(width="200px")
 			:key="item.id"
 			:class="{ active: item.id === activeItemId }"
 			@click="onClick(index)"
-		) {{ item.name }}
+		)
+			| {{ item.name }}
+			sup ({{ item.friendsNum }})
 </template>
 
 <script>
@@ -48,4 +50,10 @@ export default {
 		cursor: pointer
 		&.active
 			background-color: #fff
+		sup
+			position: relative
+			top: -3px
+			left: 5px
+			color: red
+			opacity: 0.6
 </style>

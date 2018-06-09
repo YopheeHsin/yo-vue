@@ -13,10 +13,14 @@ el-form.main-form(:model="model" label-position="left" label-width="160px")
 			el-radio(label="banana")
 			el-radio(label="strawberry")
 	el-form-item(label="FRIENDS")
+		friends(:model="model.friends")
 </template>
 
 <script>
+import Friends from './friends'
 export default {
+	components: { Friends },
+
 	props: ['model']
 }
 </script>

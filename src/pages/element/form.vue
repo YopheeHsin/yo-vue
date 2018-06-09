@@ -25,7 +25,8 @@ export default {
 			return this.list.map(item => {
 				return {
 					id: item.id,
-					name: item.name
+					name: item.name,
+					friendsNum: item.friends.length
 				}
 			})
 		}

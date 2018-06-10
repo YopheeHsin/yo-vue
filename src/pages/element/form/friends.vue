@@ -1,11 +1,12 @@
 <template lang="pug">
 .friends
 	el-tag(
-		v-for="friend in model"
-		:key="friend.id"
+		v-for="(friend, index) in friends"
+		:key="index"
+		:disable-transitions="true"
 		closable
-		@close="handleClose(friend)"
-	) {{ friend.name }}
+		@close="handleClose(index)"
+	) {{ friend }}
 	el-input.input-new-tag(
 		v-if="inputVisible"
 		v-model="inputValue"
@@ -23,31 +24,48 @@
 
 <script>
 export default {
-	props: ['model'],
+	props: {
+		value: Array
+	},
 
 	data() {
 		return {
-			dynamicTags: ['标签一', '标签二', '标签三'],
+			friends: [].concat(this.value),
 			inputVisible: false,
 			inputValue: ''
 		}
 	},
 
+	watch: {
+		value(val) {
+			this.friends = [].concat(val)
+			// this.friends = val.slice(0)
+		}
+	},
+
 	methods: {
-		handleClose(tag) {
-			this.dynamicTags.splice(this.dynamicTags.indexOf(tag), 1)
+		update() {
+			this.$emit('input', this.friends)
+		},
+
+		handleClose(index) {
+			this.friends.splice(index, 1)
+			this.update()
 		},
 
 		showInput() {
 			this.inputVisible = true
-			this.$nextTick(_ => {
+			this.$nextTick(() => {
 				this.$refs.saveTagInput.$refs.input.focus()
 			})
 		},
 
 		handleInputConfirm() {
-			let inputValue = this.inputValue
-			if (inputValue) this.dynamicTags.push(inputValue)
+			let inputValue = this.inputValue.trim()
+			if (inputValue) {
+				this.friends.push(inputValue)
+				this.update()
+			}
 			this.inputVisible = false
 			this.inputValue = ''
 		}

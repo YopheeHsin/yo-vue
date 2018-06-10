@@ -2,7 +2,7 @@
 el-container
 	side-bar(:config="asideConfig" @change="onAsideChange")
 	el-main
-		main-form(:model="formModel")
+		main-form(:model="formModel" @update="onFormUpdate")
 </template>
 
 <script>
@@ -14,8 +14,8 @@ export default {
 
 	data() {
 		return {
-			activeItem: {},
 			list,
+			activeItemIndex: '',
 			formModel: {}
 		}
 	},
@@ -33,15 +33,24 @@ export default {
 	},
 
 	methods: {
-		onAsideChange(index) {
-			this.activeItem = this.list[index]
+		setFormModel(index) {
+			if (this.activeItemIndex === index) return
+			this.activeItemIndex = index
 			this.formModel = this.list[index]
+		},
+
+		onAsideChange(index) {
+			this.setFormModel(index)
+		},
+
+		onFormUpdate(formData) {
+			this.$set(this.list, this.activeItemIndex, formData)
+			// this.list.splice(this.activeItemIndex, 1, formData)
 		}
 	},
 
 	created() {
-		this.activeItem = this.list[0]
-		this.formModel = this.list[0]
+		this.setFormModel(0)
 	}
 }
 </script>

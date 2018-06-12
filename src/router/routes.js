@@ -11,28 +11,28 @@ import Test from '../pages/test'
 export default [{
 	path: '/',
 	component: App
-},{
+}, {
 	path: '/loading',
 	component: Loading
-},{
+}, {
 	path: '/icon',
 	component: Icon
-},{
+}, {
 	path: '/stepper',
 	component: Stepper
-},{
+}, {
 	path: '/collapse',
 	component: Collapse
-},{
+}, {
 	path: '/pagination',
 	component: Pagination
-},{
+}, {
 	path: '/switch',
 	component: Switch
-},{
+}, {
 	path: '/tab',
 	component: Tab
-},{
+}, {
 	path: '/test',
 	component: Test
 }]

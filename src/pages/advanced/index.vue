@@ -25,6 +25,12 @@ export default {
 		return {
 			list
 		}
+	},
+
+	created() {
+		this.$http.get('/foo1').then(res => {
+			console.log(res)
+		})
 	}
 }
 

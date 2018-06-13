@@ -4,7 +4,7 @@ yo-cell-group(border)
 		v-for="(item, index) in list"
 		:key="index"
 		:title="item.meta.label"
-		:to="'/element/' + item.path"
+		:to="'/advanced/' + item.path"
 		is-link
 	)
 </template>

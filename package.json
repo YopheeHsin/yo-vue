@@ -13,6 +13,7 @@
   "dependencies": {
     "element-ui": "^2.4.0",
     "lodash": "^4.17.10",
+    "mockjs": "^1.0.1-beta3",
     "vue": "^2.5.2",
     "vue-drag-drop": "^1.1.0",
     "vue-router": "^3.0.1",

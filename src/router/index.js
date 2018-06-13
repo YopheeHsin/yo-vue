@@ -1,11 +1,11 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import baseRoutes from './routes'
-import elementRoutes from '../pages/element/routes'
+import advancedRoutes from '../pages/advanced/routes'
 
 Vue.use(Router)
 
-const routes = baseRoutes.concat(elementRoutes)
+const routes = baseRoutes.concat(advancedRoutes)
 
 export default new Router({
 	routes,

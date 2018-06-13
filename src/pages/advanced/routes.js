@@ -8,7 +8,7 @@ const nestedRoutesComponent = {
 }
 
 export default [{
-	path: '/element',
+	path: '/advanced',
 	component: nestedRoutesComponent,
 	children: [{
 		path: '',

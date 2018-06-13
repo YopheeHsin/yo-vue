@@ -24,7 +24,7 @@ export default {
 		routes.forEach(item => {
 			if (['/', '/test'].indexOf(item.path) === -1) list.push(item.path.replace('/', ''))
 		})
-		list.push('element')
+		list.push('advanced')
 
 		return {
 			list

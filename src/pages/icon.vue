@@ -458,9 +458,7 @@
 import YoIcon from '../components/yo-icon'
 
 export default {
-	components: {
-		YoIcon
-	}
+	components: { YoIcon }
 }
 </script>
 

@@ -2,6 +2,7 @@ import Index from './index'
 import Tabs from './tabs'
 import Form from './form'
 import DragDrop from './drag-drop'
+import Echarts from './echarts'
 
 const nestedRoutesComponent = {
 	template: '<router-view />'
@@ -30,6 +31,12 @@ export default [{
 		component: DragDrop,
 		meta: {
 			label: '拖放+Vuex状态管理'
+		}
+	}, {
+		path: 'echarts',
+		component: Echarts,
+		meta: {
+			label: 'ECharts图表'
 		}
 	}]
 }]

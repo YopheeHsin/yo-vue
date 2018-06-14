@@ -1,7 +1,7 @@
-import { foo, bar } from './temp'
+import { frameworks, bar } from './data'
 
 const res = [
-	['GET', '/foo', foo],
+	['GET', '/frameworks', frameworks],
 	['POST', '/bar', bar]
 ]
 

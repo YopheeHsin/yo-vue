@@ -1,6 +1,6 @@
-import Mock from 'mockjs'
+// import Mock from 'mockjs'
 
-const Random = Mock.Random
+// const Random = Mock.Random
 
 
 // 	let articles = []
@@ -15,12 +15,19 @@ const Random = Mock.Random
 
 
 
-const foo = {
-	foo: Random.string( 10 )
+const frameworks = {
+	React: 63,
+	Vue: 50,
+	'No Framework': 27,
+	'Angular 2': 14,
+	Angular: 14,
+	Backbone: 6,
+	Polymer: 3,
+	Ember: 2
 }
 
 const bar = {
 	bar: 'bar'
 }
 
-export { foo, bar }
+export { frameworks, bar }

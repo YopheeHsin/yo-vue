@@ -1,22 +1,58 @@
-import Mock from 'mockjs'
+import axios from 'axios'
+import adapter from 'axios-mock-adapter'
 
-const Random = Mock.Random
+// import {
+// 	Todos
+// } from './data/todoList'; // 导入Todos数据
 
-const produceNewsData = function() {
-	let articles = []
-	for (let i = 0; i < 100; i++) {
-		articles.push({
-			title: Random.csentence(5, 30),
-			thumbnail_pic_s: Random.dataImage('300x250', 'mock的图片'),
-			author_name: Random.cname(),
-			date: Random.date() + ' ' + Random.time()
+const mockResponses = [
+	['GET', '/foo', {
+		foo: 'foo'
+	}],
+	['POST', '/bar', {
+		bar: 'bar'
+	}]
+]
+
+export default {
+	init() {
+		const mock = new adapter(axios)
+
+		mock.onAny().reply(config => {
+			return new Promise((resolve, reject) => {
+				let response
+
+				if (Math.random() > 0.9) {
+					const matchedResponse = mockResponses.filter(([method, url]) => {
+						return config.method.toUpperCase() === method && config.url === url
+					})
+
+					response = matchedResponse.length ?
+						[200, {
+							code: 0,
+							msg: 'Success',
+							data: matchedResponse[0][2]
+						}] : [404, {
+							code: 404,
+							msg: 'Not Found',
+							data: null
+						}]
+				} else {
+					response = [500, {
+						code: 500,
+						msg: 'Internal Server Error',
+						data: null
+					}]
+				}
+
+				setTimeout(() => {
+					if (response[0] === 200) {
+						resolve(response)
+					} else {
+						reject(response)
+					}
+				}, Math.floor(200 + Math.random() * 800))
+			})
 		})
 	}
-	console.log(articles)
-
-	return {
-		articles
-	}
 }
-
-Mock.mock('/test', 'get', produceNewsData)

@@ -28,8 +28,10 @@ export default {
 	},
 
 	created() {
-		this.$http.get('/foo1').then(res => {
+		this.$http.get('/foo').then(res => {
 			console.log(res)
+		}).catch(err => {
+			console.log(err)
 		})
 	}
 }

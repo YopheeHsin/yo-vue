@@ -12,7 +12,6 @@ axios.interceptors.response.use(({ data }) => {
 	if (data.code > 0) Vue.prototype.$message.error(data.msg)
 	return data
 }, error => {
-	console.log(error)
 	Vue.prototype.$message.error('未知错误')
 	return Promise.reject(error)
 })
@@ -24,7 +23,7 @@ Vue.use(ElementUI)
 
 Vue.config.productionTip = false
 
-import mock from './mock/mock'
+import mock from './mock'
 mock.init()
 
 new Vue({

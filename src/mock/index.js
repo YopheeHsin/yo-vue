@@ -1,18 +1,6 @@
 import axios from 'axios'
 import adapter from 'axios-mock-adapter'
-
-// import {
-// 	Todos
-// } from './data/todoList'; // 导入Todos数据
-
-const mockResponses = [
-	['GET', '/foo', {
-		foo: 'foo'
-	}],
-	['POST', '/bar', {
-		bar: 'bar'
-	}]
-]
+import mockResponses from './responses'
 
 export default {
 	init() {
@@ -22,7 +10,7 @@ export default {
 			return new Promise((resolve, reject) => {
 				let response
 
-				if (Math.random() > 0.9) {
+				if (Math.random() > 0.01) {
 					const matchedResponse = mockResponses.filter(([method, url]) => {
 						return config.method.toUpperCase() === method && config.url === url
 					})

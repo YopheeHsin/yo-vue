@@ -3,6 +3,9 @@ import Tabs from './tabs'
 import Form from './form'
 import DragDrop from './drag-drop'
 import Echarts from './echarts'
+import Lifecycle from './lifecycle'
+
+import lifecycleRoutes from './lifecycle/routes'
 
 const nestedRoutesComponent = {
 	template: '<router-view />'
@@ -38,5 +41,12 @@ export default [{
 		meta: {
 			label: 'ECharts图表'
 		}
+	}, {
+		path: 'lifecycle',
+		component: Lifecycle,
+		meta: {
+			label: '生命周期'
+		},
+		children: lifecycleRoutes
 	}]
 }]

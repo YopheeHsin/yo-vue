@@ -1,8 +1,8 @@
-import { frameworks, bar } from './data'
+import { frameworks, tasks } from './data'
 
 const res = [
 	['GET', '/frameworks', frameworks],
-	['POST', '/bar', bar]
+	['GET', '/tasks', tasks]
 ]
 
 export default res

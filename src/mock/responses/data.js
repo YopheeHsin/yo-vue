@@ -1,19 +1,5 @@
-// import Mock from 'mockjs'
-
-// const Random = Mock.Random
-
-
-// 	let articles = []
-// 	for (let i = 0; i < 100; i++) {
-// 		articles.push({
-// 			title: Random.csentence(5, 30),
-// 			thumbnail_pic_s: Random.dataImage('300x250', 'mock的图片'),
-// 			author_name: Random.cname(),
-// 			date: Random.date() + ' ' + Random.time()
-// 		})
-// 	}
-
-
+import Mock from 'mockjs'
+const Random = Mock.Random
 
 const frameworks = {
 	React: 63,
@@ -26,8 +12,26 @@ const frameworks = {
 	Ember: 2
 }
 
-const bar = {
-	bar: 'bar'
-}
+const tasks = [{
+	name: Random.cword(3),
+	type: '',
+	pre_step: {
+		work_info: {}
+	},
+	steps: [{
+		name: Random.cword(3),
+		step_id: Random.guid(),
+		frequency: {
+			times: 1,
+			round: [''],
+			rate: 'sameInterval',
+			rate_info: {
+				num: '1',
+				unit: 'day'
+			},
+			time_range: [2, 2]
+		}
+	}]
+}]
 
-export { frameworks, bar }
+export { frameworks, tasks }

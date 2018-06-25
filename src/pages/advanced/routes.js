@@ -4,8 +4,8 @@ import Form from './form'
 import DragDrop from './drag-drop'
 import Echarts from './echarts'
 import Lifecycle from './lifecycle'
-
 import lifecycleRoutes from './lifecycle/routes'
+import Complexity from './complexity'
 
 const nestedRoutesComponent = {
 	template: '<router-view />'
@@ -48,5 +48,11 @@ export default [{
 			label: '生命周期'
 		},
 		children: lifecycleRoutes
+	}, {
+		path: 'complexity',
+		component: Complexity,
+		meta: {
+			label: '复杂状态管理'
+		}
 	}]
 }]

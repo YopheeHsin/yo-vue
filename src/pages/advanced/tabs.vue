@@ -69,7 +69,7 @@ export default {
 		deleteQueue (queue, index) {
 			this.$confirm(`确认删除${queue.name}?`).then(() => {
 				this.queues.splice(index, 1)
-			})
+			}).catch(() => {})
 		},
 		confirmEditQueue () {
 			this.queues[this.activeIndex].name = this.activeQueueName

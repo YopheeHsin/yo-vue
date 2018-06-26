@@ -20,7 +20,27 @@ const tasks = [{
 	},
 	steps: [{
 		name: Random.cword(3),
-		step_id: Random.guid(),
+		id: Random.guid(),
+		frequency: {
+			times: 1,
+			round: [''],
+			rate: 'sameInterval',
+			rate_info: {
+				num: '1',
+				unit: 'day'
+			},
+			time_range: [2, 2]
+		}
+	}]
+}, {
+	name: Random.cword(3),
+	type: '',
+	pre_step: {
+		work_info: {}
+	},
+	steps: [{
+		name: Random.cword(3),
+		id: Random.guid(),
 		frequency: {
 			times: 1,
 			round: [''],

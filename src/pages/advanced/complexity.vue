@@ -1,6 +1,7 @@
 <template lang="pug">
-.complexity
+el-container.complexity
 	side-bar
+	el-main
 </template>
 
 <script>
@@ -46,5 +47,4 @@ export default {
 
 <style lang="sass" scoped>
 .complexity
-	margin: 30px
 </style>

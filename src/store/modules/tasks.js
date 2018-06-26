@@ -10,21 +10,22 @@ export default {
 		brief: state => {
 			const list = []
 			state.tasks.forEach((task, index) => {
-				const taskId = 'task_' + index
+				const taskId = 'task_' + (+new Date())
 				const steps = [{
 					name: '前置步骤',
-					step_id: taskId + '_pre_step'
+					id: taskId + '_pre_step'
 				}]
 
 				task.steps.forEach(step => {
 					steps.push({
 						name: step.name,
-						step_id: step.step_id
+						id: step.id
 					})
 				})
 
 				list.push({
 					name: task.name,
+					id: taskId,
 					steps
 				})
 			})

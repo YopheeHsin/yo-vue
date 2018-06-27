@@ -13,14 +13,14 @@ const frameworks = {
 }
 
 const tasks = [{
-	name: Random.cword(3),
-	type: '',
+	name: '工序1',
 	pre_step: {
 		work_info: {}
 	},
 	steps: [{
-		name: Random.cword(3),
+		name: '步骤1',
 		id: Random.guid(),
+		type: 'manual',
 		frequency: {
 			times: 1,
 			round: [''],
@@ -33,14 +33,14 @@ const tasks = [{
 		}
 	}]
 }, {
-	name: Random.cword(3),
-	type: '',
+	name: '工序2',
 	pre_step: {
 		work_info: {}
 	},
 	steps: [{
-		name: Random.cword(3),
+		name: '步骤1',
 		id: Random.guid(),
+		type: 'automatic',
 		frequency: {
 			times: 1,
 			round: [''],

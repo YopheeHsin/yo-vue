@@ -2,37 +2,27 @@
 el-container.complexity
 	side-bar
 	el-main
+		main-form
 </template>
 
 <script>
-import { mapGetters, mapMutations } from 'vuex'
+import { mapMutations } from 'vuex'
 import SideBar from './complexity/side-bar'
+import MainForm from './complexity/main-form'
 
 export default {
-	components: { SideBar },
+	components: { SideBar, MainForm },
 
 	data() {
 		return {
-			a: ''
-		}
-	},
 
-	computed: {
-		...mapGetters(['tasks'])
+		}
 	},
 
 	methods: {
 		...mapMutations({
-			init: 'TASKS_INIT',
-			update: 'TASKS_UPDATE'
-		}),
-
-		onClick() {
-			this.update({
-				name: 'new',
-				index: 0
-			})
-		}
+			init: 'TASKS_INIT'
+		})
 	},
 
 	mounted() {
@@ -44,7 +34,3 @@ export default {
 	}
 }
 </script>
-
-<style lang="sass" scoped>
-.complexity
-</style>

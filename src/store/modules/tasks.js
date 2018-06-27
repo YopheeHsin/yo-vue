@@ -10,7 +10,7 @@ export default {
 		brief: state => {
 			const list = []
 			state.tasks.forEach((task, index) => {
-				const taskId = 'task_' + (+new Date())
+				const taskId = 'task_' + index
 				const steps = [{
 					name: '前置步骤',
 					id: taskId + '_pre_step'
@@ -34,16 +34,23 @@ export default {
 	},
 
 	mutations: {
-		[TASKS.UPDATE](state, {
-			name,
-			index
-		}) {
-			state.tasks[index].name = name
-		},
 		[TASKS.INIT](state, {
 			tasks
 		}) {
 			state.tasks = tasks
-		}
+		},
+		[TASKS.UPDATETASKNAME](state, {
+			index,
+			name
+		}) {
+			state.tasks[index].name = name
+		},
+		[TASKS.UPDATESTEPNAME](state, {
+			task_index,
+			step_index,
+			name
+		}) {
+			state.tasks[task_index].steps[step_index - 1].name = name
+		},
 	}
 }

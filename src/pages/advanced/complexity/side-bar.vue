@@ -1,6 +1,6 @@
 <template lang="pug">
 el-aside(width="200px")
-	el-collapse(v-model="activeTask" @change="handleChange")
+	el-collapse(v-model="activeTask")
 		el-collapse-item(
 			v-for="(task, taskIndex) in tasks"
 			:key="task.id"
@@ -8,43 +8,56 @@ el-aside(width="200px")
 		)
 			.task-title(slot="title")
 				span {{ task.name }}
-				el-dropdown.task-action.action
+				el-dropdown.action.action-task
 					i.el-icon-more
 					el-dropdown-menu(slot="dropdown")
-						el-dropdown-item(@click.native="setActiveInputId(task.id)") 编辑
+						el-dropdown-item(@click.native="setActiveInput(task)") 编辑
 						el-dropdown-item 删除
 				el-input(
-					v-show="activeInputId === task.id"
-					:value="task.name"
+					:ref="'input' + task.id"
+					v-if="activeInputId === task.id"
+					v-model="editingNameValue"
 					size="small"
+					@change="updateTaskName({index: taskIndex, name: editingNameValue})"
+					@blur="activeInputId = ''"
 				)
 			.step(
 				v-for="(step, stepIndex) in task.steps"
 				:key="step.id"
-				:class="{ active: step.id === activeStep.id }"
-				@click="onClickStep(step)"
+				:class="{ active: step.id === activeStepId }"
+				@click="setActiveStep(step)"
 			)
 				span {{ step.name }}
-				el-dropdown.step-action.action(v-if="stepIndex")
+				el-dropdown.action.action-step(v-if="stepIndex")
 					i.el-icon-more
 					el-dropdown-menu(slot="dropdown")
-						el-dropdown-item(@click.native="setActiveInputId(step.id)") 编辑
+						el-dropdown-item(@click.native="setActiveInput(step)") 编辑
 						el-dropdown-item 删除
-				el-input(:value="step.name" size="small")
+				el-input(
+					:ref="'input' + step.id"
+					v-if="stepIndex && activeInputId === step.id"
+					v-model="editingNameValue"
+					size="small"
+					@change="updateStepName({task_index: taskIndex, step_index: stepIndex, name: editingNameValue})"
+					@blur="activeInputId = ''"
+				)
+			.add.add-step
+				el-button(size="mini") 添加步骤
+		.add.add-task
+			el-button(size="mini") 添加工序
 	.b
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters, mapMutations } from 'vuex'
 
 export default {
 	data() {
 		return {
 			activeTask: [0],
-			activeStep: {
-				id: 'task_0_pre_step'
-			},
-			activeInputId: ''
+			activeStepId: 'task_0_pre_step',
+			activeInputId: '',
+			editingNameValue: ''
 		}
 	},
 
@@ -55,19 +68,20 @@ export default {
 	},
 
 	methods: {
-		handleChange() {
-
+		...mapMutations({
+			updateTaskName: 'TASKS_UPDATE_TASK_NAME',
+			updateStepName: 'TASKS_UPDATE_STEP_NAME'
+		}),
+		setActiveStep(step) {
+			this.activeStepId = step.id
 		},
-		onClickStep(step) {
-			this.activeStep.id = step.id
-		},
-		setActiveInputId(id) {
+		setActiveInput({id, name}) {
 			this.activeInputId = id
+			this.editingNameValue = name
+			this.$nextTick(() => {
+				this.$refs['input' + id][0].focus()
+			})
 		}
-	},
-
-	created() {
-
 	}
 }
 </script>
@@ -78,14 +92,14 @@ export default {
 	flex-direction: column
 	height: 100vh
 	user-select: none
+	.el-collapse
+		border-bottom-width: 0
 	/deep/ .el-collapse-item__header
 		position: relative
 		background-color: #f9f9f9
 		border-right: 1px solid #f0f0f0
 		font-size: 14px
 		font-weight: normal
-		.task-action
-			top: 16px
 		.el-input
 			position: absolute
 			left: 10px
@@ -93,6 +107,8 @@ export default {
 	/deep/ .el-collapse-item__arrow
 		float: left
 		margin-left: 10px
+	/deep/ .el-icon-arrow-right:before
+		content: "\E60E"
 	/deep/ .el-collapse-item__content
 		padding-bottom: 0
 	.step
@@ -109,9 +125,7 @@ export default {
 			position: relative
 			background-color: #fff
 			border-right-color: #fff
-			border-left-color: #337ab7
-		&-action
-			top: 13px
+			border-left-color: #409EFF
 		.el-input
 			position: absolute
 			left: 10px
@@ -120,10 +134,23 @@ export default {
 		position: absolute
 		right: 5px
 		line-height: 14px
+		&-task
+			top: 16px
+		&-step
+			top: 13px
 		.el-icon-more
 			transform: rotate(90deg)
 			font-size: 10px
 			color: #999
+	.add
+		border-right: 1px solid #f0f0f0
+		padding: 5px 32px
+		button
+			width: 100%
+		&-step
+			border-top: 1px solid #f0f0f0
+		span
+			padding-left: 3px
 	.b
 		flex: 1
 		border-right: 1px solid #f0f0f0

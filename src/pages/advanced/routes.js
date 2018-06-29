@@ -6,6 +6,7 @@ import Echarts from './echarts'
 import Lifecycle from './lifecycle'
 import lifecycleRoutes from './lifecycle/routes'
 import Complexity from './complexity'
+import Reactivity from './reactivity'
 
 const nestedRoutesComponent = {
 	template: '<router-view />'
@@ -53,6 +54,12 @@ export default [{
 		component: Complexity,
 		meta: {
 			label: '复杂状态管理'
+		}
+	}, {
+		path: 'reactivity',
+		component: Reactivity,
+		meta: {
+			label: '检测数据变化'
 		}
 	}]
 }]

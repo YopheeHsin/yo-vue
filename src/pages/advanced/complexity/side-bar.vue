@@ -4,7 +4,7 @@ el-aside(width="200px")
 		el-collapse-item(
 			v-for="(task, taskIndex) in tasks"
 			:key="task.id"
-			name="taskIndex"
+			:name="taskIndex + ''"
 		)
 			.task-title(slot="title")
 				span {{ task.name }}
@@ -42,9 +42,13 @@ el-aside(width="200px")
 					@blur="activeInputId = ''"
 				)
 			.add.add-step
-				el-button(size="mini" @click="addStep({task_index: taskIndex})") 添加步骤
+				el-button(size="mini" @click="addStep({task_index: taskIndex})")
+					| 添加步骤
+					i.el-icon-plus
 		.add.add-task
-			el-button(size="mini" @click="addTask") 添加工序
+			el-button(size="mini" @click="addTaskFn")
+				| 添加工序
+				i.el-icon-plus
 	.b
 </template>
 
@@ -79,6 +83,10 @@ export default {
 			addTask: 'TASKS_ADD_TASK',
 			addStep: 'TASKS_ADD_STEP'
 		}),
+		addTaskFn() {
+			this.addTask()
+			this.activeTask = this.tasks.length - 1 + ''
+		},
 		setActiveInput({id, name}) {
 			this.activeInputId = id
 			this.editingNameValue = name
@@ -97,6 +105,7 @@ export default {
 	height: 100vh
 	user-select: none
 	.el-collapse
+		background-color: #f9f9f9
 		border-bottom-width: 0
 	/deep/ .el-collapse-item__header
 		position: relative
@@ -105,7 +114,7 @@ export default {
 		font-weight: normal
 	/deep/ .el-collapse-item__arrow
 		float: left
-		margin-left: 10px
+		margin-left: 9px
 	/deep/ .el-icon-arrow-right:before
 		content: "\E60E"
 	/deep/ .el-collapse-item__content
@@ -116,14 +125,12 @@ export default {
 		background-color: #f9f9f9
 		border-top: 1px solid #f0f0f0
 		border-right: 1px solid #f0f0f0
-		border-left: 1px solid #f9f9f9
 		padding: 0 30px
 		cursor: pointer
 		&.active
 			position: relative
 			background-color: #fff
 			border-right-color: #fff
-			border-left-color: #fff
 	.el-input
 		position: absolute
 		left: 10px
@@ -138,15 +145,21 @@ export default {
 			font-size: 10px
 			color: #999
 	.add
+		background-color: #f9f9f9
 		border-right: 1px solid #f0f0f0
 		padding: 10px 30px
 		button
 			width: 100%
+			padding-left: 25px
+			i
+				padding-left: 3px
+				transform: scale(.8)
 		&-step
 			border-top: 1px solid #f0f0f0
 		span
 			padding-left: 3px
 	.b
 		flex: 1
+		background-color: #f9f9f9
 		border-right: 1px solid #f0f0f0
 </style>

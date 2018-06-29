@@ -1,21 +1,12 @@
 import Mock from 'mockjs'
 const Random = Mock.Random
 
-const frameworks = {
-	React: 63,
-	Vue: 50,
-	'No Framework': 27,
-	'Angular 2': 14,
-	Angular: 14,
-	Backbone: 6,
-	Polymer: 3,
-	Ember: 2
-}
-
-const tasks = [{
+export default [{
 	name: '工序1',
 	pre_step: {
-		work_info: {}
+		work_info: {
+			id: ''
+		}
 	},
 	steps: [{
 		name: '步骤1',
@@ -35,7 +26,9 @@ const tasks = [{
 }, {
 	name: '工序2',
 	pre_step: {
-		work_info: {}
+		work_info: {
+			id: ''
+		}
 	},
 	steps: [{
 		name: '步骤1',
@@ -53,5 +46,3 @@ const tasks = [{
 		}
 	}]
 }]
-
-export { frameworks, tasks }

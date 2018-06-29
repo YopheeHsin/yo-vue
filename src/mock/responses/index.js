@@ -1,4 +1,5 @@
-import { frameworks, tasks } from './data'
+import frameworks from './frameworks'
+import tasks from './tasks'
 
 const res = [
 	['GET', '/frameworks', frameworks],

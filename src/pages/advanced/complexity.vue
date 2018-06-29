@@ -21,16 +21,21 @@ export default {
 
 	methods: {
 		...mapMutations({
-			init: 'TASKS_INIT'
+			init: 'TASKS_INIT',
+			dispose: 'TASKS_DISPOSE'
 		})
 	},
 
-	mounted() {
+	created() {
 		this.$http.get('/tasks').then(res => {
 			this.init({
 				tasks: res.data
 			})
 		})
+	},
+
+	destroyed() {
+		this.dispose()
 	}
 }
 </script>

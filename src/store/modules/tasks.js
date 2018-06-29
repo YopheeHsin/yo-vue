@@ -47,6 +47,12 @@ export default {
 			})
 		},
 
+		[TASKS.DISPOSE](state) {
+			state.baseInfo = []
+			state.stepsBus = {}
+			state.activeStepId = ''
+		},
+
 		[TASKS.SET_ACTIVE_STEP_ID](state, {
 			id
 		}) {
@@ -65,7 +71,7 @@ export default {
 			step_index,
 			name
 		}) {
-			state.baseInfo[task_index].steps[step_index - 1].name = name
+			state.baseInfo[task_index].steps[step_index].name = name
 		},
 
 		[TASKS.ADD_TASK](state) {
@@ -91,8 +97,8 @@ export default {
 		}) {
 			const timestamp = +new Date()
 			const stepId = 'new_step_' + timestamp
-			state.baseInfo.steps.push({
-				name: '步骤' + (state.baseInfo[task_index].steps.length + 1),
+			state.baseInfo[task_index].steps.push({
+				name: '步骤' + (state.baseInfo[task_index].steps.length),
 				id: stepId
 			})
 			state.stepsBus[stepId] = {
@@ -109,6 +115,11 @@ export default {
 				}
 			}
 			state.activeStepId = stepId
-		}
+		},
+
+		[TASKS.SET_PRE_STEP](state) {
+			const timestamp = +new Date()
+			state.stepsBus[state.activeStepId].work_info.id = timestamp
+		},
 	}
 }

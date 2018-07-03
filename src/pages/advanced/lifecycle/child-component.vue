@@ -9,6 +9,7 @@
 import mixin from './mixin'
 export default {
 	name: 'child-component',
+	color: '#8e44ad',
 	mixins: [mixin]
 }
 </script>

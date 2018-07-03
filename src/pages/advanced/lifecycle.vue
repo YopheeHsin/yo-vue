@@ -19,6 +19,7 @@ import ChildComponent from './lifecycle/child-component.vue'
 import CachedChildComponent from './lifecycle/cached-child-component.vue'
 export default {
 	name: 'lifecycle',
+	color: '#333',
 	components: { ChildComponent, CachedChildComponent },
 	mixins: [mixin],
 	data() {

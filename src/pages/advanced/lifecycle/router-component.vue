@@ -10,6 +10,7 @@
 import mixin from './mixin'
 export default {
 	name: 'router-component',
+	color: '#f1c40f',
 	mixins: [mixin]
 }
 </script>

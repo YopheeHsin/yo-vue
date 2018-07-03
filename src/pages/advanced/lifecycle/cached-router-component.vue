@@ -10,6 +10,7 @@
 import mixin from './mixin'
 export default {
 	name: 'cached-router-component',
+	color: '#d35400',
 	mixins: [mixin]
 }
 </script>

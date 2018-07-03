@@ -16,7 +16,7 @@ export default {
 			return m + ':' + s + ':' + ms
 		},
 		log(log) {
-			const timeStyle = 'background-color:#000;color:#fff;'
+			const timeStyle = `background-color:${this.$options.color};color:#fff;`
 			// eslint-disable-next-line no-console
 			console.log('%c' + this.time(), timeStyle, this.$options.name + ' ' + log)
 		},

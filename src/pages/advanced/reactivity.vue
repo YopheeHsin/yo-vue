@@ -32,7 +32,6 @@ export default {
 	created() {
 		const vm = this
 		setTimeout(() => {
-			console.log('created...')
 			vm.obj_dt.key = 'val-0'
 			vm.arr_dt[0] = 0
 		}, 10000)

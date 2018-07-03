@@ -1,10 +1,10 @@
 <template lang="pug">
 .pre-step
-	.work-info(v-if="activeStep.work_info.id" @click="setPreStep")
-		p {{ activeStep.work_info.id }}
-		span 步骤描述
-		i.el-icon-circle-close-outline
-	.add(v-else @click="setPreStep")
+	.work-info(v-if="activeStep.work_info.id")
+		p 前置步骤
+		span id: {{ activeStep.work_info.id }}
+		i.el-icon-circle-close-outline(@click="setPreStepFn(true)")
+	.add(v-else @click="setPreStepFn(false)")
 		| 添加内容
 		i.el-icon-plus
 </template>
@@ -13,12 +13,6 @@
 import { mapGetters, mapMutations } from 'vuex'
 
 export default {
-	data() {
-		return {
-
-		}
-	},
-
 	computed: {
 		...mapGetters(['activeStep'])
 	},
@@ -26,7 +20,14 @@ export default {
 	methods: {
 		...mapMutations({
 			setPreStep: 'TASKS_SET_PRE_STEP'
-		})
+		}),
+		setPreStepFn(reset) {
+			const timestamp = +new Date()
+			const work_info_id = reset ? '' : timestamp
+			this.setPreStep({
+				work_info_id
+			})
+		}
 	}
 }
 </script>

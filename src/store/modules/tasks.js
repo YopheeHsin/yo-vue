@@ -1,4 +1,5 @@
 import { TASKS } from '../types'
+import Vue from 'vue'
 
 export default {
 	state: {
@@ -25,7 +26,8 @@ export default {
 					name: '前置步骤',
 					id: preStepId
 				}]
-				state.stepsBus[preStepId] = task.pre_step
+				// state.stepsBus[preStepId] = task.pre_step
+				Vue.set(state.stepsBus, preStepId, task.pre_step)
 				if(!index) state.activeStepId = preStepId
 
 				task.steps.forEach(step => {
@@ -33,10 +35,14 @@ export default {
 						name: step.name,
 						id: step.id
 					})
-					state.stepsBus[step.id] = {
+					// state.stepsBus[step.id] = {
+					// 	type: step.type,
+					// 	frequency: step.frequency
+					// }
+					Vue.set(state.stepsBus, step.id, {
 						type: step.type,
 						frequency: step.frequency
-					}
+					})
 				})
 
 				state.baseInfo.push({
@@ -117,9 +123,10 @@ export default {
 			state.activeStepId = stepId
 		},
 
-		[TASKS.SET_PRE_STEP](state) {
-			const timestamp = +new Date()
-			state.stepsBus[state.activeStepId].work_info.id = timestamp
+		[TASKS.SET_PRE_STEP](state, {
+			work_info_id
+		}) {
+			state.stepsBus[state.activeStepId].work_info.id = work_info_id
 		},
 	}
 }

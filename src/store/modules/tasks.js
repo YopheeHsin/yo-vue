@@ -92,9 +92,11 @@ export default {
 					id: preStepId
 				}]
 			})
-			state.stepsBus[preStepId] = {
-				work_info: {}
-			}
+			Vue.set(state.stepsBus, preStepId, {
+				work_info: {
+					id: ''
+				}
+			})
 			state.activeStepId = preStepId
 		},
 

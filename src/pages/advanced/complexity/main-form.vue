@@ -12,20 +12,28 @@
 				size="medium"
 			) 自动
 		el-form(
-			label-position="left"
 			label-width="160px"
 		)
 			el-form-item(
-				label="年龄"
+				label="重复次数"
 			)
-				el-slider.times-slider(
-					v-model="formData.frequency.times"
-					:step="1"
-					:min="1",
-                	:max="5",
-				)
-				.times-slider-mark
-					span(v-for="n in 5" :key="n") {{ n }}
+				.times-slider-container
+					el-slider.times-slider(
+						v-model="formData.frequency.times"
+						:step="1"
+						:min="1"
+						:max="25"
+					)
+					.times-slider-mark
+						span(v-for="n in 25" :key="n") {{ n === 1 || n%5 === 0 ? n : '' }}
+			el-form-item(
+				label="名称"
+			)
+				.round-list
+					.item(
+						v-for="n in formData.frequency.times"
+						:key="n"
+					) {{ n }}
 
 
 
@@ -85,25 +93,29 @@ export default {
 		margin: 0 auto
 		.el-button
 			width: 150px
+	.times-slider-container
+		padding-left: 20px
 	.times-slider
-		width: 200px
-		&-mark
-			display: flex
-			justify-content: space-between
+		width: 500px
+	.times-slider-mark
+		display: flex
+		justify-content: space-between
+		position: relative
+		top: -10px
+		left: -7px
+		width: 514px
+		span
 			position: relative
-			top: -10px
-			left: -11px
-			width: 200px
-			span
-				position: relative
-				display: inline-block
-				height: 40px
-				&:before
-					content: ''
-					width: 1px
-					height: 6px
-					background-color: #d8d8d8
-					position: absolute
-					top: 0
-					left: 11px
+			width: 15px
+			text-align: center
+			&:before
+				content: ''
+				position: absolute
+				top: 0
+				left: 7px
+				width: 1px
+				height: 6px
+				background-color: #d8d8d8
+
+
 </style>

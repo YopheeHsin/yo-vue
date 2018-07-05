@@ -1,5 +1,5 @@
 <template lang="pug">
-.container
+.chart-container
 	.title
 		p Front-end Frameworks Usage
 		el-tooltip(effect="light" :visible-arrow="false")
@@ -180,7 +180,7 @@ export default {
 <style lang="sass">
 body
 	background-color: #f9f9f9
-.container
+.chart-container
 	box-sizing: border-box
 	max-width: 600px
 	min-width: 400px

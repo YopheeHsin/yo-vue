@@ -14,13 +14,13 @@ export default [{
 		type: 'manual',
 		frequency: {
 			times: 1,
-			round: [''],
-			rate: 'sameInterval',
+			rounds: ['T1'],
+			rate: 'noInterval',
 			rate_info: {
-				num: '1',
+				num: '',
 				unit: 'day'
 			},
-			time_range: [2, 2]
+			time_range: [1, 1]
 		}
 	}]
 }, {
@@ -35,14 +35,14 @@ export default [{
 		id: Random.guid(),
 		type: 'automatic',
 		frequency: {
-			times: 1,
-			round: [''],
+			times: 2,
+			rounds: ['T1', 'T2'],
 			rate: 'sameInterval',
 			rate_info: {
 				num: '1',
 				unit: 'day'
 			},
-			time_range: [2, 2]
+			time_range: [1, 1]
 		}
 	}]
 }]

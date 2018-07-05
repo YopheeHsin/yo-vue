@@ -1,22 +1,22 @@
 <template lang="pug">
 el-container.complexity
 	side-bar
-	el-main
-		main-form
+	el-main(v-if="activeStepId")
+		pre-step(v-if="activeStep.work_info")
+		main-step(v-else)
 </template>
 
 <script>
-import { mapMutations } from 'vuex'
+import { mapGetters, mapMutations } from 'vuex'
 import SideBar from './complexity/side-bar'
-import MainForm from './complexity/main-form'
+import PreStep from './complexity/pre-step'
+import MainStep from './complexity/main-step'
 
 export default {
-	components: { SideBar, MainForm },
+	components: { SideBar, PreStep, MainStep },
 
-	data() {
-		return {
-
-		}
+	computed: {
+		...mapGetters(['activeStepId', 'activeStep'])
 	},
 
 	methods: {
@@ -39,3 +39,9 @@ export default {
 	}
 }
 </script>
+
+<style lang="sass" scoped>
+.el-main
+	height: 100vh
+	overflow-y: auto
+</style>

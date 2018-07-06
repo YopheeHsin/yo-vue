@@ -21,6 +21,7 @@
 					:step="1"
 					:min="1"
 					:max="25"
+					@change="onSliderChange"
 				)
 				.times-slider-mark
 					span(v-for="n in 25" :key="n") {{ n === 1 || n%5 === 0 ? n : '' }}
@@ -40,6 +41,7 @@
 		)
 			el-radio-group(
 				v-model="formData.frequency.rate"
+				@change="onRateChange"
 			)
 				el-radio(label="noInterval") 不限制
 				el-radio(label="sameInterval") 均匀
@@ -69,7 +71,7 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters, mapMutations } from 'vuex'
 
 export default {
 	data() {
@@ -101,51 +103,55 @@ export default {
 	watch: {
 		activeStepId() {
 			this.initFormData()
-			console.log('activeStepId changed...')
 		},
 
 		formData: {
-			handler() {
+			handler(step) {
 				if (this.isformDataInit) {
 					this.isformDataInit = false
 					return
 				}
-				console.log('formData changed...')
+				this.setMainStep(this._.cloneDeep(step))
 			},
 			deep: true
-		},
-
-		// 'formData.frequency.times' (val) {
-		// 	const frequency = this.formData.frequency
-
-		// 	const rounds = frequency.rounds
-		// 	const l = rounds.length
-		// 	if (val > l) {
-		// 		for(let i = 0; i < val - l; i++) {
-		// 			rounds.push('')
-		// 		}
-		// 	} else if(val < l) {
-		// 		rounds.splice(val, l - val)
-		// 	}
-
-		// 	frequency.rate = 'noInterval'
-		// 	frequency.rate_info.num = ''
-		// 	frequency.rate_info.unit = 'day'
-		// },
-
-
+		}
 	},
 
 	methods: {
+		...mapMutations({
+			setMainStep: 'TASKS_SET_MAIN_STEP'
+		}),
+
 		initFormData() {
 			this.isformDataInit = true
 			this.formData = this._.cloneDeep(this.activeStep)
+		},
+
+		onSliderChange(val) {
+			const frequency = this.formData.frequency
+
+			const rounds = frequency.rounds
+			const l = rounds.length
+			if (val > l) {
+				for(let i = 0; i < val - l; i++) {
+					rounds.push('')
+				}
+			} else if(val < l) {
+				rounds.splice(val, l - val)
+			}
+
+			frequency.rate = 'noInterval'
+			frequency.rate_info.num = ''
+			frequency.rate_info.unit = 'day'
+		},
+
+		onRateChange() {
+			this.formData.frequency.rate_info.num = ''
 		}
 	},
 
 	created() {
 		this.initFormData()
-		console.log('created...')
 	}
 }
 </script>

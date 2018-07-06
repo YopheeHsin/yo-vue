@@ -109,19 +109,19 @@ export default {
 				name: '步骤' + (state.baseInfo[task_index].steps.length),
 				id: stepId
 			})
-			state.stepsBus[stepId] = {
+			Vue.set(state.stepsBus, stepId, {
 				type: 'manual',
 				frequency: {
 					times: 1,
-					round: [''],
-					rate: 'sameInterval',
+					rounds: [''],
+					rate: 'noInterval',
 					rate_info: {
-						num: '1',
+						num: '',
 						unit: 'day'
 					},
-					time_range: [2, 2]
+					time_range: [1, 1]
 				}
-			}
+			})
 			state.activeStepId = stepId
 		},
 
@@ -129,6 +129,10 @@ export default {
 			work_info_id
 		}) {
 			state.stepsBus[state.activeStepId].work_info.id = work_info_id
+		},
+
+		[TASKS.SET_MAIN_STEP](state, step) {
+			state.stepsBus[state.activeStepId] = step
 		},
 	}
 }

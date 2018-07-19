@@ -6,6 +6,7 @@ import Echarts from './echarts'
 import Lifecycle from './lifecycle'
 import lifecycleRoutes from './lifecycle/routes'
 import Complexity from './complexity'
+import Directive from './directive'
 import Reactivity from './reactivity'
 
 const nestedRoutesComponent = {
@@ -54,6 +55,12 @@ export default [{
 		component: Complexity,
 		meta: {
 			label: '复杂状态管理'
+		}
+	}, {
+		path: 'directive',
+		component: Directive,
+		meta: {
+			label: '自定义指令'
 		}
 	}, {
 		path: 'reactivity',

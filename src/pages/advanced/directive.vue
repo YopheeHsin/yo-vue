@@ -15,14 +15,19 @@ const DragableDialog = {
 			default: true
 		}
 	},
+	data() {
+		return {
+			d: 0
+		}
+	},
 	template: `
 		<el-dialog
-			v-drug="visible"
+			v-drug="d"
 			title="Dialog"
 			:visible="true"
 			@close="$emit('close', false)"
-			append-to-body>
-		</el-dialog>
+			append-to-body
+		><div @click="d++">c</div></el-dialog>
 	`
 }
 

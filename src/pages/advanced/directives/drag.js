@@ -1,25 +1,25 @@
+const ctx = '@@Drag'
+
 export default {
 	bind(el, binding) {
-		// el.addEventListener('mousedown', mouseDown);
-		// function mouseDown(event) {
-		// 	el.style.left = '200px'
-		// }
-	},
-	update(el, binding) {
 		const handler = (binding.value && binding.value.handler && el.querySelector(binding.value.handler)) || el
 		const target = (binding.value && binding.value.target && el.querySelector(binding.value.target)) || el
-
-		if (binding && binding.value && binding.value.reset) {
-			initializeState()
+		el[ctx] = {
+			handler,
+			target,
+			mouseDown,
+			dblClick
 		}
 
 		if (!handler.getAttribute('draggable')) {
 			handler.addEventListener('mousedown', mouseDown)
+			handler.addEventListener('dblclick', dblClick)
 			handler.setAttribute('draggable', 'true')
 			initializeState()
 		}
 
 		function mouseDown(event) {
+			handler.style.cursor = 'move'
 			setState({
 				initialMousePos: getInitialMousePosition(event)
 			})
@@ -28,6 +28,7 @@ export default {
 		}
 
 		function mouseUp() {
+			handler.style.cursor = 'default'
 			const currentRectPosition = getRectPosition()
 			setState({
 				initialMousePos: undefined,
@@ -40,10 +41,11 @@ export default {
 
 		function mouseMove(event) {
 			event.preventDefault()
+			let state = getState()
 			if (!state.startDragPosition || !state.initialMousePos) {
 				initializeState(event)
+				state = getState()
 			}
-			let state = getState()
 			const dx = event.clientX - state.initialMousePos.left
 			const dy = event.clientY - state.initialMousePos.top
 			const currentDragPosition = {
@@ -56,14 +58,18 @@ export default {
 			updateElementStyle()
 		}
 
+		function dblClick() {
+			initializeState()
+		}
+
 		function updateElementStyle() {
 			var state = getState()
 			if (!state.currentDragPosition) {
 				return
 			}
-			// el.style.position = 'fixed'
-			el.style.left = state.currentDragPosition.left + 'px'
-			el.style.top = state.currentDragPosition.top + 'px'
+			// target.style.position = 'fixed'
+			target.style.left = state.currentDragPosition.left + 'px'
+			target.style.top = state.currentDragPosition.top + 'px'
 		}
 
 		function getInitialMousePosition(event) {
@@ -74,20 +80,23 @@ export default {
 		}
 
 		function getRectPosition() {
-			const clientRect = el.getBoundingClientRect()
-			if (!clientRect.height || !clientRect.width) {
+			const clientRect = target.getBoundingClientRect()
+			if (!clientRect.width || !clientRect.height) {
 				return
 			}
 			return {
-				left: clientRect.left,
-				top: clientRect.top
+				left: clientRect.left + clientRect.width / 2,
+				top: clientRect.top + clientRect.height / 2
 			}
 		}
 
 		function initializeState(event) {
-			const initialPosition = getRectPosition()
+			const state = getState()
+			const initialPositionFromState = state.initialPosition
+			const currentRectPosition = getRectPosition()
+			const initialPosition = initialPositionFromState || currentRectPosition
 			setState({
-				initialPosition: initialPosition,
+				initialPosition,
 				startDragPosition: initialPosition,
 				currentDragPosition: initialPosition,
 				initialMousePos: getInitialMousePosition(event)
@@ -106,7 +115,14 @@ export default {
 		}
 
 	},
-	unbind() {
-		console.log('unbind')
+
+	unbind(el) {
+		const { handler, mouseDown, dblClick } = el[ctx]
+
+		if (handler.getAttribute('draggable')) {
+			handler.removeEventListener('mousedown', mouseDown)
+			handler.removeEventListener('dblclick', dblClick)
+			handler.removeAttribute('draggable')
+		}
 	}
 }

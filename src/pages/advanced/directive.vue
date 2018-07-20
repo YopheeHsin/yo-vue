@@ -17,17 +17,21 @@ const DragableDialog = {
 	},
 	data() {
 		return {
-			d: 0
+			drugConfig: {
+				handler: '.el-dialog__header',
+				target: '.el-dialog'
+			}
 		}
 	},
 	template: `
 		<el-dialog
-			v-drug="d"
+			v-drug="drugConfig"
 			title="Dialog"
 			:visible="true"
 			@close="$emit('close', false)"
+			:close-on-click-modal="false"
 			append-to-body
-		><div @click="d++">c</div></el-dialog>
+		>double click to reset</el-dialog>
 	`
 }
 

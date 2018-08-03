@@ -7,6 +7,7 @@ import Lifecycle from './lifecycle'
 import lifecycleRoutes from './lifecycle/routes'
 import Complexity from './complexity'
 import Directive from './directive'
+import Contextmenu from './contextmenu'
 import Reactivity from './reactivity'
 
 const nestedRoutesComponent = {
@@ -61,6 +62,12 @@ export default [{
 		component: Directive,
 		meta: {
 			label: '自定义指令'
+		}
+	}, {
+		path: 'contextmenu',
+		component: Contextmenu,
+		meta: {
+			label: '右键菜单'
 		}
 	}, {
 		path: 'reactivity',

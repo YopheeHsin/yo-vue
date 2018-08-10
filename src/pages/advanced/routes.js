@@ -8,6 +8,7 @@ import lifecycleRoutes from './lifecycle/routes'
 import Complexity from './complexity'
 import Directive from './directive'
 import Contextmenu from './contextmenu'
+import D3Flextree from './d3-flextree'
 import Reactivity from './reactivity'
 
 const nestedRoutesComponent = {
@@ -68,6 +69,12 @@ export default [{
 		component: Contextmenu,
 		meta: {
 			label: '右键菜单'
+		}
+	}, {
+		path: 'd3-flextree',
+		component: D3Flextree,
+		meta: {
+			label: 'D3树状图'
 		}
 	}, {
 		path: 'reactivity',

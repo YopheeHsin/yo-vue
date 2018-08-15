@@ -36,9 +36,9 @@ export default {
 			// layout(tree)
 			// console.log(tree)
 
-				// .nodeSize(node => {
-				// 	return [node.width || 1, node.height || 1]
-				// })
+			// .nodeSize(node => {
+			// 	return [node.width || 1, node.height || 1]
+			// })
 
 			// let node = hierarchy.descendants()
 			// this.nodeEnter(tree)
@@ -75,7 +75,7 @@ export default {
 			const svg = d3.select('svg')
 				.attr('width', flextreeContainer.clientWidth)
 				.attr('height', flextreeContainer.clientHeight)
-			// this.container = svg.append('g')
+			this.container = svg.append('g')
 		},
 
 		// nodeInit(node) {

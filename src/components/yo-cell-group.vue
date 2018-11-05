@@ -1,5 +1,5 @@
 <template lang="pug">
-.yo-cell-group(:class="{ 'yo-hairline--top-bottom': border }")
+.yo-cell-group(:class="{ 'yo-line--top-bottom': border }")
 	slot
 </template>
 

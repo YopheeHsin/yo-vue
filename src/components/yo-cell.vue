@@ -1,6 +1,6 @@
 <template lang="pug">
 .yo-cell(
-	:class="{ 'yo-hairline': border, 'yo-cell--center': center, 'yo-cell--required': required, 'yo-cell--clickable': isLink || clickable }"
+	:class="{ 'yo-line': border, 'yo-cell--center': center, 'yo-cell--required': required, 'yo-cell--clickable': isLink || clickable }"
 	@click="onClick"
 )
 	.yo-cell__title(v-if="title || icon || $slots.title || $slots.icon")
@@ -71,11 +71,8 @@ export default {
 	overflow: hidden
 
 	&:not(:last-child)::after
-		right: 0
 		left: 15px
-		width: auto
 		border-bottom-width: 1px
-		transform: scale(1, .5)
 
 	&__title
 		.yo-icon

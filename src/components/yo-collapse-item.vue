@@ -1,6 +1,6 @@
 <template lang="pug">
 .yo-collapse-item(
-	:class="{ 'yo-hairline--top': index, 'yo-collapse-item--expanded': expanded }"
+	:class="{ 'yo-line--top': index, 'yo-collapse-item--expanded': expanded }"
 )
 	yo-cell.yo-collapse-item__title(is-link @click="onClick")
 		slot(name="title") {{ title }}

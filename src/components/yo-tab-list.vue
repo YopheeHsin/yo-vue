@@ -1,6 +1,6 @@
 <template lang="pug">
 .yo-tab-list
-	.yo-tab-list__wrap.yo-hairline--top-bottom(
+	.yo-tab-list__wrap.yo-line--top-bottom(
 		ref="wrap"
 		:class="[`yo-tab-list__wrap--${position}`, { 'yo-tab-list--scrollable': scrollable }]"
 	)

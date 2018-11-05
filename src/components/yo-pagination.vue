@@ -1,10 +1,10 @@
 <template lang="pug">
 ul.yo-pagination(:class="{ 'yo-pagination-simple': !isMultiMode }")
-	li.yo-pagination__item.yo-pagination__prev.yo-hairline(
+	li.yo-pagination__item.yo-pagination__prev.yo-line(
 		:class="{ 'yo-pagination--disabled': value === 1 }"
 		@click="selectPage(value - 1)"
 	) {{ prevText }}
-	li.yo-pagination__item.yo-pagination__page.yo-hairline(
+	li.yo-pagination__item.yo-pagination__page.yo-line(
 		v-for="(page, index) in (isMultiMode ? pages : [])"
 		:key="index"
 		:class="{ 'yo-pagination--active': page.active }"
@@ -12,7 +12,7 @@ ul.yo-pagination(:class="{ 'yo-pagination-simple': !isMultiMode }")
 	) {{ page.text }}
 	li.yo-pagination__page-desc(v-if="!isMultiMode")
 		slot(name="pageDesc") {{ pageDesc }}
-	li.yo-pagination__item.yo-pagination__next.yo-hairline(
+	li.yo-pagination__item.yo-pagination__next.yo-line(
 		:class="{ 'yo-pagination--disabled': value === computedPageCount }"
 		@click="selectPage(value + 1)"
 	) {{ nextText }}

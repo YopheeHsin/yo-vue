@@ -1,5 +1,5 @@
 <template lang="pug">
-.yo-collapse-list.yo-hairline--top-bottom
+.yo-collapse-list.yo-line--top-bottom
 	slot
 </template>
 

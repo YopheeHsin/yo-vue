@@ -21,12 +21,8 @@ export default {
 	name: 'yo-stepper',
 
 	data() {
-		let value = this.value ? +this.value : +this.defaultValue
-		const correctedValue = this.correctValue(value)
-		if (value !== correctedValue) {
-			value = correctedValue
-			this.$emit('input', value)
-		}
+		const value = this.range(this.isDef(this.value) ? this.value : this.defaultValue)
+		if (value !== +this.value) this.$emit('input', value)
 
 		return {
 			currentValue: value
@@ -34,7 +30,7 @@ export default {
 	},
 
 	props: {
-		value: {},
+		value: null,
 		disabled: Boolean,
 		disableInput: Boolean,
 		min: {
@@ -57,48 +53,45 @@ export default {
 
 	computed: {
 		isMinusDisabled() {
-			const min = +this.min
-			const step = +this.step
-			const currentValue = +this.currentValue
-			return min === currentValue || (currentValue - step) < min || this.disabled
+			return this.disabled || this.currentValue <= +this.min
 		},
 
 		isPlusDisabled() {
-			const max = +this.max
-			const step = +this.step
-			const currentValue = +this.currentValue
-			return max === currentValue || (currentValue + step) > max || this.disabled
+			return this.disabled || this.currentValue >= +this.max
 		}
 	},
 
 	watch: {
 		value(val) {
-			if (val !== '') {
-				val = this.correctValue(+val)
-				if (val !== this.currentValue) {
-					this.currentValue = val
-				}
-			}
+			if (val !== this.currentValue) this.currentValue = this.format(val)
+		},
+
+		currentValue(val) {
+			this.$emit('input', val)
+			this.$emit('change', val)
 		}
 	},
 
 	methods: {
-		correctValue(value) {
-			if (Number.isNaN(value)) {
-				value = this.min
-			} else {
-				value = Math.max(this.min, value)
-				value = Math.min(this.max, value)
-			}
+		isDef(value) {
+			return value !== undefined && value !== null
+		},
 
-			return value
+		format(value) {
+			// eslint-disable-next-line
+			value = String(value).replace(/[^0-9\.-]/g, '')
+			return value === '' ? 0 : +value
+		},
+
+		range(value) {
+			return Math.max(Math.min(this.max, this.format(value)), this.min)
 		},
 
 		onInput(event) {
 			const { value } = event.target
-			this.currentValue = value ? this.correctValue(+value) : value
-			event.target.value = this.currentValue
-			this.emitInput()
+			const formatted = this.format(value)
+			if (+value !== formatted) event.target.value = formatted
+			this.currentValue = formatted
 		},
 
 		onChange(type) {
@@ -107,16 +100,10 @@ export default {
 				return
 			}
 
-			const step = +this.step
-			const currentValue = +this.currentValue
-			this.currentValue = type === 'minus' ? (currentValue - step) : (currentValue + step)
-			this.emitInput()
+			const diff = type === 'minus' ? -this.step : +this.step
+			const value = this.currentValue + diff
+			this.currentValue = this.range(value)
 			this.$emit(type)
-		},
-
-		emitInput() {
-			this.$emit('input', this.currentValue)
-			this.$emit('change', this.currentValue)
 		}
 	}
 }

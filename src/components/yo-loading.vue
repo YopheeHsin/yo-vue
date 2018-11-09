@@ -36,7 +36,7 @@ export default {
 }
 </script>
 
-<style lang="sass">
+<style lang="sass" scoped>
 @import '../css/common/var'
 
 .yo-loading

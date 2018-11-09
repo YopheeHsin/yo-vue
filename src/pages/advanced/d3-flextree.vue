@@ -1,4 +1,4 @@
-<template lang="pug">
+<!-- <template lang="pug">
 .flextree-container
 	svg
 		g.links
@@ -115,3 +115,4 @@ export default {
 		stroke: #ccc
 		stroke-width: 1px
 </style>
+ -->

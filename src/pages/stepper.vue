@@ -23,7 +23,7 @@ export default {
 }
 </script>
 
-<style lang="sass">
+<style lang="sass" scoped>
 .demo-stepper
 	margin: 20px
 

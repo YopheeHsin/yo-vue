@@ -15,20 +15,15 @@ export default {
 
 	props: {
 		accordion: Boolean,
-		activeNames: [String, Number, Array]
-	},
-
-	model: {
-		prop: 'activeNames'
+		value: [String, Number, Array]
 	},
 
 	methods: {
 		switch(name, expanded) {
-			const { activeNames } = this
 			if (!this.accordion) {
 				name = expanded
-					? activeNames.concat(name)
-					: activeNames.filter(activeNames => activeNames !== name)
+					? this.value.concat(name)
+					: this.value.filter(item => item !== name)
 			}
 			this.$emit('change', name)
 			this.$emit('input', name)

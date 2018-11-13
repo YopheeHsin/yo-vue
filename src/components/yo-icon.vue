@@ -13,7 +13,7 @@ export default {
 }
 </script>
 
-<style lang="sass" scoped>
+<style lang="sass">
 @font-face
 	font-family: 'FontAwesome'
 	src: url('../assets/fonts/fontawesome-webfont.eot')

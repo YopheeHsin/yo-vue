@@ -17,11 +17,13 @@
 </template>
 
 <script>
+import { isDef } from '../utils'
+
 export default {
 	name: 'yo-stepper',
 
 	data() {
-		const value = this.range(this.isDef(this.value) ? this.value : this.defaultValue)
+		const value = this.range(isDef(this.value) ? this.value : this.defaultValue)
 		if (value !== +this.value) this.$emit('input', value)
 
 		return {
@@ -73,10 +75,6 @@ export default {
 	},
 
 	methods: {
-		isDef(value) {
-			return value !== undefined && value !== null
-		},
-
 		format(value) {
 			// eslint-disable-next-line
 			value = String(value).replace(/[^0-9\.-]/g, '')
@@ -109,7 +107,7 @@ export default {
 }
 </script>
 
-<style lang="sass" scoped>
+<style lang="sass">
 @import '../css/common/var'
 
 .yo-stepper

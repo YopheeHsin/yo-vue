@@ -10,8 +10,7 @@ export default {
 
 	methods: {
 		handleClick() {
-			let _value = this.value + 1
-			this.$emit('input', _value)
+			this.$emit('input', this.value + 1)
 		}
 	}
 }

@@ -4,14 +4,21 @@
 )
 	yo-cell.yo-collapse-item__title(is-link @click="onClick")
 		slot(name="title") {{ title }}
-	.yo-collapse-item__content(v-show="expanded")
-		slot
+	.yo-collapse-item__wrapper(
+		ref="wrapper"
+		v-if="inited"
+		v-show="show"
+		@transitionend="onTransitionEnd"
+	)
+		.yo-collapse-item__content(ref="content")
+			slot
 </template>
 
 <script>
 import YoCell from './yo-cell'
 import findParent from '../mixins/find-parent'
 import { isDef } from '../utils'
+import { raf } from '../utils/raf'
 
 export default {
 	name: 'yo-collapse-item',
@@ -20,6 +27,13 @@ export default {
 
 	mixins: [findParent],
 
+	data() {
+		return {
+			show: null,
+			inited: null
+		}
+	},
+
 	props: {
 		name: [String, Number],
 		title: String
@@ -27,7 +41,7 @@ export default {
 
 	computed: {
 		items() {
-			return this.parentGroup.items
+			return this.parent.items
 		},
 
 		index() {
@@ -39,26 +53,57 @@ export default {
 		},
 
 		expanded() {
-			const { activeNames } = this.parentGroup
-			return this.parentGroup.accordion
-				? activeNames === this.currentName
-				: activeNames.some(name => name === this.currentName)
+			if (!this.parent) return null
+			const { value } = this.parent
+			return this.parent.accordion
+				? value === this.currentName
+				: value.some(name => name === this.currentName)
+		}
+	},
+
+	watch: {
+		expanded(expanded, prev) {
+			if (prev === null) return
+			if (expanded) {
+				this.show = true
+				this.inited = true
+			}
+
+			this.$nextTick(() => {
+				const { wrapper, content } = this.$refs
+				if (!wrapper || !content ) return
+				const contentHeight = content.clientHeight + 'px'
+				wrapper.style.height = expanded ? 0 : contentHeight
+				raf(() => {
+					wrapper.style.height = expanded ? contentHeight : 0
+				})
+			})
 		}
 	},
 
 	methods: {
 		onClick() {
-			const { parentGroup } = this
-			const name = parentGroup.accordion
-				&& this.currentName === parentGroup.activeNames
+			const { parent } = this
+			const name = parent.accordion
+				&& this.currentName === parent.value
 				? '' : this.currentName
-			this.parentGroup.switch(name, !this.expanded)
+			this.parent.switch(name, !this.expanded)
+		},
+
+		onTransitionEnd() {
+			if (!this.expanded) {
+				this.show = false
+			} else {
+				this.$refs.wrapper.style.height = null
+			}
 		}
 	},
 
 	created() {
 		this.findParentByName('yo-collapse-list')
 		this.items.push(this)
+		this.show = this.expanded
+		this.inited = this.expanded
 	},
 
 	destroyed() {
@@ -78,6 +123,11 @@ export default {
 
 		&::after
 			visibility: hidden
+
+	&__wrapper
+		overflow: hidden
+		will-change: height
+		transition: height .3s ease-in-out
 
 	&__content
 		padding: 15px

@@ -1,8 +1,7 @@
-<template>
-<div class="demo-test">
-	<yo-test v-model="test" />
-	<p>{{ test }}</p>
-</div>
+<template lang="pug">
+.demo-test
+	yo-test(v-model="test")
+	p {{ test }}
 </template>
 
 <script>

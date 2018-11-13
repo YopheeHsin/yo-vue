@@ -1,18 +1,20 @@
 export default {
+	data() {
+		return {
+			parent: null
+		}
+	},
+
 	methods: {
 		findParentByName(name) {
-			if (!this.parentGroup) {
-				let parent = this.$parent
-				while (parent) {
-					if (parent.$options.name === name) {
-						this.parentGroup = parent
-						break
-					}
-					parent = parent.$parent
+			let parent = this.$parent
+			while (parent) {
+				if (parent.$options.name === name) {
+					this.parent = parent
+					break
 				}
+				parent = parent.$parent
 			}
-
-			return this.parentGroup
 		}
 	}
 }

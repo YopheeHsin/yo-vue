@@ -1,11 +1,14 @@
-<template>
-<div class="demo-pagination">
-	<yo-cell-group>
-		<yo-cell v-for="(item, index) in items" :key="index">{{ item }}</yo-cell>
-	</yo-cell-group>
-	<yo-pagination v-model="currentPage" :showPageSize="3" force-ellipses
-		:total-items="totalItems" :items-per-page="itemsPerPage" />
-</div>
+<template lang="pug">
+.demo-pagination
+	yo-cell-group
+		yo-cell(v-for="(item, index) in items" :key="index") {{ item }}
+	yo-pagination(
+		v-model="currentPage"
+		:showPageSize="3"
+		force-ellipses
+		:total-items="totalItems"
+		:items-per-page="itemsPerPage"
+	)
 </template>
 
 <script>

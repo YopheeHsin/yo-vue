@@ -1,8 +1,7 @@
-<template>
-	<div class="switch-demo">
-		<yo-switch v-model="checked" size="40px" />
-		<p>{{ checked ? '开' : '关' }}</p>
-	</div>
+<template lang="pug">
+.switch-demo
+	yo-switch(v-model="checked" size="40px")
+		p {{ checked ? '开' : '关' }}
 </template>
 
 <script>

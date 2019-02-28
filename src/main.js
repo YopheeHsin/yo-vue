@@ -24,7 +24,8 @@ Vue.use(ElementUI)
 Vue.config.productionTip = false
 
 import mock from './mock'
-mock.init()
+// eslint-disable-next-line
+process.env.NODE_ENV === 'development' && mock.init()
 
 new Vue({
 	router,

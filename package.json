@@ -16,7 +16,7 @@
     "d3-flextree": "^2.1.1",
     "echarts": "^4.1.0",
     "element-ui": "^2.4.0",
-    "lodash": "^4.17.11",
+    "lodash": "^4.17.21",
     "vue": "^2.5.2",
     "vue-drag-drop": "^1.1.0",
     "vue-router": "^3.0.1",
